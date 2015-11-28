@@ -11,7 +11,7 @@ class Business {
 	String name
 	String description
 	int standNumber
-	// ?? image
+	byte[] image
 	String contact
 	String phone
 	String address
@@ -20,5 +20,6 @@ class Business {
 	static belongsTo = [businessUser: BusinessUser]
 	
     static constraints = {
+		image nullable: true//, maxsize:s
     }
 }

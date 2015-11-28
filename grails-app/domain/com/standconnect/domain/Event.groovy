@@ -11,11 +11,12 @@ class Event {
 	Date endDate
 	String schedule
 	String location
-	// ??? image
+	byte[] image
 	
 	static hasMany = [visitorEventTag: VisitorEventTag, stands: Stand, eventBusiness: EventBusiness]
 	static belongsTo = [organizer: Organizer]
 	
     static constraints = {
+		image nullable: true//, maxsize: 
     }
 }

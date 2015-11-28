@@ -6,11 +6,12 @@ class Product {
 
 	String name
 	String description
-	double price
-	// ?? image
+	String price
+	byte[] image
 	
 	static hasMany = [businessTagProduct: BusinessTagProduct]
 	
     static constraints = {
+		image nullable: true//, maxsize:
     }
 }
