@@ -5,7 +5,7 @@ import com.standconnect.domain.relationships.VisitorEventTag
 
 
 class Tag {
-	String Name
+	String name
 	
 	static hasMany = [businessTagProduct: BusinessTagProduct, visitorEventTag: VisitorEventTag]
 	

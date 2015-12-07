@@ -10,6 +10,7 @@ class Product {
 	byte[] image
 	
 	static hasMany = [businessTagProduct: BusinessTagProduct]
+	static belongsTo = [business: Business]
 	
     static constraints = {
 		image nullable: true//, maxsize:

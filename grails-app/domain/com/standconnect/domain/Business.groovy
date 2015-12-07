@@ -16,10 +16,18 @@ class Business {
 	String phone
 	String address
 	
-	static hasMany = [standBeaconBusiness: StandBeaconBusiness, businessTagProduct: BusinessTagProduct, eventBusiness: EventBusiness]
+	static hasMany = [standBeaconBusiness: StandBeaconBusiness, businessTagProduct: BusinessTagProduct, eventBusiness: EventBusiness, products: Product]
 	static belongsTo = [businessUser: BusinessUser]
 	
     static constraints = {
 		image nullable: true//, maxsize:s
     }
+	
+	def getBasicInfo() {
+		return [
+			'id' : this.id, 'name' : this.name, 'description' : this.description, 
+			'standNumber' : this.standNumber, 'image' : this.image, 
+			'contact' : this.contact, 'phone' : this.phone, 'address' : this.address
+		]
+	}
 }

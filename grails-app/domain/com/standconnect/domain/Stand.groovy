@@ -12,4 +12,10 @@ class Stand {
 	
     static constraints = {
     }
+	
+	def getBasicInfo() {
+		return [
+			"id" : this.id, "name" : this.name, "number" : this.number
+		]
+	}
 }

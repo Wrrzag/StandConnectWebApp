@@ -78,4 +78,13 @@ class SecUser implements Serializable {
 	static mapping = {
 		password column: '`password`'
 	}
+	
+	
+	def getBasicInfo() {
+		return [
+			"id" : this.id, "name" : this.name, "mail" : this.mail, 
+			"address" : this.address, "city" : this.city, 
+			"postalCode" : this.postalCode, "gender" : this.gender
+		]
+	}
 }

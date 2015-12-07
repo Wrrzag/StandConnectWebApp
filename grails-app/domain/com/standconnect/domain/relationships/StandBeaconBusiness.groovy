@@ -11,5 +11,6 @@ class StandBeaconBusiness {
 	Business business
 	
     static constraints = {
+		
     }
 }
