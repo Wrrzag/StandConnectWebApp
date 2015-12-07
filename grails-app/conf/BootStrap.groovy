@@ -42,15 +42,17 @@ class BootStrap {
 								beginDate: new Date(),
 								endDate: new Date(),
 								schedule: "9 AM to 10 PM",
-								location: 'Borricontu').save()
+								location: 'Borricontu',
+								organizer: organizer).save()
 		def event2 = new Event(name: 'Second Event',
 								beginDate: new Date(),
 								endDate: new Date(),
 								schedule: "8 AM to 1 PM",
-								location: 'London').save()
+								location: 'London',
+								organizer: organizer).save()
 								
-		organizer.addToEvents(event1)
-		organizer.addToEvents(event2)
+//		organizer.addToEvents(event1)
+//		organizer.addToEvents(event2)
 		
 		def business = new Business(name: 'DreamFac',
 										description: 'Fabricantes de sueños',
