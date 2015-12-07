@@ -30,6 +30,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${productInstance?.business}">
+				<li class="fieldcontain">
+					<span id="business-label" class="property-label"><g:message code="product.business.label" default="Business" /></span>
+					
+						<span class="property-value" aria-labelledby="business-label"><g:link controller="business" action="show" id="${productInstance?.business?.id}">${productInstance?.business?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${productInstance?.businessTagProduct}">
 				<li class="fieldcontain">
 					<span id="businessTagProduct-label" class="property-label"><g:message code="product.businessTagProduct.label" default="Business Tag Product" /></span>

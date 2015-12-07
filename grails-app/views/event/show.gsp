@@ -106,12 +106,12 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${eventInstance?.visitorEventTag}">
+				<g:if test="${eventInstance?.visitorEvent}">
 				<li class="fieldcontain">
-					<span id="visitorEventTag-label" class="property-label"><g:message code="event.visitorEventTag.label" default="Visitor Event Tag" /></span>
+					<span id="visitorEvent-label" class="property-label"><g:message code="event.visitorEvent.label" default="Visitor Event" /></span>
 					
-						<g:each in="${eventInstance.visitorEventTag}" var="v">
-						<span class="property-value" aria-labelledby="visitorEventTag-label"><g:link controller="visitorEventTag" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></span>
+						<g:each in="${eventInstance.visitorEvent}" var="v">
+						<span class="property-value" aria-labelledby="visitorEvent-label"><g:link controller="visitorEvent" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

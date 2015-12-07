@@ -101,18 +101,18 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'visitorEventTag', 'error')} ">
-	<label for="visitorEventTag">
-		<g:message code="event.visitorEventTag.label" default="Visitor Event Tag" />
+<div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'visitorEvent', 'error')} ">
+	<label for="visitorEvent">
+		<g:message code="event.visitorEvent.label" default="Visitor Event" />
 		
 	</label>
 	
 <ul class="one-to-many">
-<g:each in="${eventInstance?.visitorEventTag?}" var="v">
-    <li><g:link controller="visitorEventTag" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></li>
+<g:each in="${eventInstance?.visitorEvent?}" var="v">
+    <li><g:link controller="visitorEvent" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="visitorEventTag" action="create" params="['event.id': eventInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'visitorEventTag.label', default: 'VisitorEventTag')])}</g:link>
+<g:link controller="visitorEvent" action="create" params="['event.id': eventInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'visitorEvent.label', default: 'VisitorEvent')])}</g:link>
 </li>
 </ul>
 

@@ -101,6 +101,24 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: businessInstance, field: 'products', 'error')} ">
+	<label for="products">
+		<g:message code="business.products.label" default="Products" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${businessInstance?.products?}" var="p">
+    <li><g:link controller="product" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="product" action="create" params="['business.id': businessInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'product.label', default: 'Product')])}</g:link>
+</li>
+</ul>
+
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: businessInstance, field: 'standBeaconBusiness', 'error')} ">
 	<label for="standBeaconBusiness">
 		<g:message code="business.standBeaconBusiness.label" default="Stand Beacon Business" />

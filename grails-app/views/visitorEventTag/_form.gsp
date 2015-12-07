@@ -2,15 +2,6 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: visitorEventTagInstance, field: 'event', 'error')} required">
-	<label for="event">
-		<g:message code="visitorEventTag.event.label" default="Event" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="event" name="event.id" from="${com.standconnect.domain.Event.list()}" optionKey="id" required="" value="${visitorEventTagInstance?.event?.id}" class="many-to-one"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: visitorEventTagInstance, field: 'tag', 'error')} required">
 	<label for="tag">
 		<g:message code="visitorEventTag.tag.label" default="Tag" />
@@ -20,12 +11,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: visitorEventTagInstance, field: 'visitor', 'error')} required">
-	<label for="visitor">
-		<g:message code="visitorEventTag.visitor.label" default="Visitor" />
+<div class="fieldcontain ${hasErrors(bean: visitorEventTagInstance, field: 'visitorEvent', 'error')} required">
+	<label for="visitorEvent">
+		<g:message code="visitorEventTag.visitorEvent.label" default="Visitor Event" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="visitor" name="visitor.id" from="${com.standconnect.domain.Visitor.list()}" optionKey="id" required="" value="${visitorEventTagInstance?.visitor?.id}" class="many-to-one"/>
+	<g:select id="visitorEvent" name="visitorEvent.id" from="${com.standconnect.domain.relationships.VisitorEvent.list()}" optionKey="id" required="" value="${visitorEventTagInstance?.visitorEvent?.id}" class="many-to-one"/>
 
 </div>
 

@@ -24,11 +24,9 @@
 			<thead>
 					<tr>
 					
-						<th><g:message code="visitorEventTag.event.label" default="Event" /></th>
-					
 						<th><g:message code="visitorEventTag.tag.label" default="Tag" /></th>
 					
-						<th><g:message code="visitorEventTag.visitor.label" default="Visitor" /></th>
+						<th><g:message code="visitorEventTag.visitorEvent.label" default="Visitor Event" /></th>
 					
 					</tr>
 				</thead>
@@ -36,11 +34,9 @@
 				<g:each in="${visitorEventTagInstanceList}" status="i" var="visitorEventTagInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${visitorEventTagInstance.id}">${fieldValue(bean: visitorEventTagInstance, field: "event")}</g:link></td>
+						<td><g:link action="show" id="${visitorEventTagInstance.id}">${fieldValue(bean: visitorEventTagInstance, field: "tag")}</g:link></td>
 					
-						<td>${fieldValue(bean: visitorEventTagInstance, field: "tag")}</td>
-					
-						<td>${fieldValue(bean: visitorEventTagInstance, field: "visitor")}</td>
+						<td>${fieldValue(bean: visitorEventTagInstance, field: "visitorEvent")}</td>
 					
 					</tr>
 				</g:each>

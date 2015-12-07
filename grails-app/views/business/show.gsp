@@ -106,6 +106,17 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${businessInstance?.products}">
+				<li class="fieldcontain">
+					<span id="products-label" class="property-label"><g:message code="business.products.label" default="Products" /></span>
+					
+						<g:each in="${businessInstance.products}" var="p">
+						<span class="property-value" aria-labelledby="products-label"><g:link controller="product" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${businessInstance?.standBeaconBusiness}">
 				<li class="fieldcontain">
 					<span id="standBeaconBusiness-label" class="property-label"><g:message code="business.standBeaconBusiness.label" default="Stand Beacon Business" /></span>

@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list visitorEventTag">
 			
-				<g:if test="${visitorEventTagInstance?.event}">
-				<li class="fieldcontain">
-					<span id="event-label" class="property-label"><g:message code="visitorEventTag.event.label" default="Event" /></span>
-					
-						<span class="property-value" aria-labelledby="event-label"><g:link controller="event" action="show" id="${visitorEventTagInstance?.event?.id}">${visitorEventTagInstance?.event?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${visitorEventTagInstance?.tag}">
 				<li class="fieldcontain">
 					<span id="tag-label" class="property-label"><g:message code="visitorEventTag.tag.label" default="Tag" /></span>
@@ -41,11 +32,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${visitorEventTagInstance?.visitor}">
+				<g:if test="${visitorEventTagInstance?.visitorEvent}">
 				<li class="fieldcontain">
-					<span id="visitor-label" class="property-label"><g:message code="visitorEventTag.visitor.label" default="Visitor" /></span>
+					<span id="visitorEvent-label" class="property-label"><g:message code="visitorEventTag.visitorEvent.label" default="Visitor Event" /></span>
 					
-						<span class="property-value" aria-labelledby="visitor-label"><g:link controller="visitor" action="show" id="${visitorEventTagInstance?.visitor?.id}">${visitorEventTagInstance?.visitor?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="visitorEvent-label"><g:link controller="visitorEvent" action="show" id="${visitorEventTagInstance?.visitorEvent?.id}">${visitorEventTagInstance?.visitorEvent?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

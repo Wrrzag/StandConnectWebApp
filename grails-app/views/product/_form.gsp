@@ -11,6 +11,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'business', 'error')} required">
+	<label for="business">
+		<g:message code="product.business.label" default="Business" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="business" name="business.id" from="${com.standconnect.domain.Business.list()}" optionKey="id" required="" value="${productInstance?.business?.id}" class="many-to-one"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: productInstance, field: 'businessTagProduct', 'error')} ">
 	<label for="businessTagProduct">
 		<g:message code="product.businessTagProduct.label" default="Business Tag Product" />
