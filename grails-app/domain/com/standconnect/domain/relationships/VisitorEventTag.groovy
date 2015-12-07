@@ -6,8 +6,9 @@ import com.standconnect.domain.Visitor
 
 class VisitorEventTag {
 
-	Visitor visitor
-	Event event
+//	Visitor visitor
+//	Event event
+	VisitorEvent visitorEvent
 	Tag tag
 	
     static constraints = {
