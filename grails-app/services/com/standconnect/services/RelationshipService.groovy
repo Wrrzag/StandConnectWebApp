@@ -18,24 +18,9 @@ import com.standconnect.domain.relationships.VisitorEventTag
 @Transactional
 class RelationshipService {
 
-//    def newVisitorEventTag(Visitor v, Event e, Tag t) {
-//		def rel = new VisitorEventTag(visitor: v, event: e, tag: t)
-//		if(!rel.save()) return null
-//		
-//		v.addToVisitorEventTag(rel)
-//		e.addToVisitorEventTag(rel)
-//		t.addToVisitorEventTag(rel)
-//		
-//		VisitorEventTag.withTransaction {
-//			if(!v.save() || !e.save() || !t.save) {
-//				// TODO rollback
-//				return null
-//			}
-//			
-//			return rel
-//		}
-//    }
-	
+	//-----------------------------------
+	//------------  GETTERS  ------------
+	//-----------------------------------
 	def getBusinesses(Tag tag) {
 		return BusinessTagProduct.findAllByTag(tag)*.business
 	}
@@ -57,31 +42,36 @@ class RelationshipService {
 	}
 	
 	def getTags(Business business) {
-		
+		return BusinessTagProduct.findAllByBusiness(business)*.tag
 	}
 	
 	def getTags(Product product) {
-		
+		return BusinessTagProduct.findAllByProduct(product)*.tag
 	}
 	
 	def getTags(VisitorEvent visitorEvent) {
-		
+		return VisitorEventTag.findAllByVisitorEvent(visitorEvent)*.tag
 	}
 	
 	def getTags(Visitor visitor, Event event) {
-		
+		def visitorEvent = getVisitorEvent(visitor, event)
+		return getTags(visitorEvent)
+	}
+	
+	def getVisitorEvent(Visitor visitor, Event event) {
+		return VisitorEvent.findAllByVisitorAndEvent(visitor, event)	
 	}
 	
 	def getProducts(Business business) {
-		
+		return BusinessTagProduct.findAllByBusiness(business)*.product
 	}
 	
 	def getProducts(Tag tag) {
-		
+		return BusinessTagProduct.findAllByTag(tag)*.product
 	}
 	
 	def getEvents(Business business) {
-		
+		return EventBusiness.findAllByBusiness(business)*.event
 	}
 	
 	def getEvents(Visitor visitor) {
