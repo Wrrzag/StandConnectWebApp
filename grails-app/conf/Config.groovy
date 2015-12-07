@@ -99,10 +99,12 @@ environments {
 log4j.main = {
     // Example of changing the log pattern for the default console appender:
     //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
-
+    appenders {
+        console name:'stdout', layout:pattern(conversionPattern: '[%-5p] %c{2} %m%n')
+    }
+	
+	debug "grails.app"
+	
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -114,6 +116,7 @@ log4j.main = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+		  
 }
 
 // Added by the Spring Security Core plugin:
