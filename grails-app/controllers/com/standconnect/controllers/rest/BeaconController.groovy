@@ -12,9 +12,11 @@ class BeaconController {
 		log.debug("Params: ${params}")
 		
 		if(params.eventId) {
+			log.debug("Petition coming from an Event")
 			respond beaconService.listByEventId(params.eventId)
 		}
 		else {
+			log.debug("Standalone petition")
 			respond beaconService.list()
 		}
 	}
@@ -23,6 +25,13 @@ class BeaconController {
 		log.debug("REST petition on show method")
 		log.debug("Params: ${params}")
 		
-		respond beaconService.get(params.id)
+		if(params.eventId) {
+			log.debug("Petition coming from an Event")
+			respond beaconService.getByEventId(params.id, params.eventId)
+		}
+		else {
+			log.debug("Standalone petition")
+			respond beaconService.get(params.id)
+		}
 	}
 }

@@ -13,7 +13,7 @@ class EventService {
 	def relationshipService 
 	
     def list(params) {
-		return Event.collect() {
+		return Event.list().collect() {
 			getEventInfo(it)
 		}
     }

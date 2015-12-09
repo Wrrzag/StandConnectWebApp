@@ -20,4 +20,13 @@ class Event {
     static constraints = {
 		image nullable: true//, maxsize: 
     }
+	
+	def getBasicInfo() {
+		return [
+			"id" : this.id, "name" :  this.name, "beginDate" : this.beginDate,
+			"endDate" : this.endDate, "schedule" : this.schedule, 
+			"location" : this.location, "image" : this.image,
+			"organizer" : this.organizer.getBasicInfo()
+		]
+	}
 }

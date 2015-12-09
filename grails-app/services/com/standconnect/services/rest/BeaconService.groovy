@@ -24,7 +24,7 @@ class BeaconService {
 		}
 		
 		return relationshipService.getBeacons(event).collect() {
-			getBeaconInfo(it)
+			getBeaconInfo(it, true)
 		}
 	}
 	
@@ -39,19 +39,32 @@ class BeaconService {
 		return getBeaconInfo(beacon)
 	}
 	
-	private getBeaconInfo(Beacon beacon) {
+	def getByEventId(id, eventId) {
+		def beacon = Beacon.get(id)
+		
+		if(!beacon) {
+			log.debug("No beacon found with ID $id")
+			return
+		}
+		
+		return getBeaconInfo(beacon, true)
+	}
+	
+	private getBeaconInfo(Beacon beacon, standsWithBusinessInfo = false) {
+		log.debug("Add business info to the stands: $standsWithBusinessInfo")
+		
 		def businesses = relationshipService.getBusinesses(beacon)
 		def stands = relationshipService.getStands(beacon)
 		
 		def businessList = businesses.collect() { it.getBasicInfo() }
-		def standList = stands.collect() { it.getBasicInfo() }
+		def standList = stands.collect() { standsWithBusinessInfo ? it.getBasicInfoWithBusiness() : it.getBasicInfo() }[0]
 		
 		def beaconReturn = [:]
 		beaconReturn['id'] = beacon.id
 		beaconReturn['name'] = beacon.name
 		beaconReturn['mac'] = beacon.mac
-		beaconReturn['businesses'] = businessList
-		beaconReturn['stands'] = standList
+		if(!standsWithBusinessInfo) beaconReturn['business'] = businessList
+		beaconReturn['stand'] = standList
 		
 		return beaconReturn
 	}

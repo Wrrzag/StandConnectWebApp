@@ -11,6 +11,7 @@ class StandBeaconBusiness {
 	Business business
 	
     static constraints = {
-		
+		// stand + beacon unique
+		// business + beacon unique
     }
 }

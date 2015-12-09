@@ -11,4 +11,10 @@ class Tag {
 	
     static constraints = {
     }
+	
+	def getBasicInfo() {
+		return [
+			"id" : this.id, "name" : this.name	
+		]
+	}
 }

@@ -7,15 +7,17 @@ class StandController {
 	static namespace = 'api'
 	static responseFormats = ['json', 'xml']
 	
+	def standService
+	
     def index() { 
 		log.debug("REST petition on index method")
 		log.debug("Params: ${params}") 
 		
 		if(params.eventId) {
-			def eventId = params.eventId
-			respond Stand.where {
-	            event.id == eventId
-	        }.list()
+			respond standService.listByEventId(params.eventId)
+		}
+		else if(params.beaconId) {
+			respond standService.listByBeaconId(params.beaconId)
 		}
 		else {
 			respond Stand.list()
@@ -26,6 +28,6 @@ class StandController {
 		log.debug("REST petition on show method")
 		log.debug("Params: ${params}")
 		
-		respond Stand.get(params.id)
+		respond standService.get(params.id)
 	}
 }
