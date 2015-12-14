@@ -5,6 +5,22 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+		
+		<script type="text/javascript">
+            $(document).ready(function(){
+                $("#imageControl").show();
+                $("#image").hide();
+
+                $("#replaceImage").on("change", function() {
+                	if($(this).prop("checked")){
+                        $("#image").show(500);
+                	}
+                	else {
+                        $("#image").hide(500);
+                    }
+                });
+            });
+        </script>
 	</head>
 	<body>
 		<a href="#edit-event" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -27,10 +43,10 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:eventInstance, action:'update']" method="PUT"  enctype="multipart/form-data">
+			<g:form url="[resource:eventInstance, action:'update']" method="PUT" enctype="multipart/form-data">
 				<g:hiddenField name="version" value="${eventInstance?.version}" />
 				<fieldset class="form">
-					<g:render template="form"/>
+					<g:render template="form" model="['update':true]"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

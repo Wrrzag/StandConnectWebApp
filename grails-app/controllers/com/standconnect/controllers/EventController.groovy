@@ -11,7 +11,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class EventController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
+	def springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -38,6 +39,7 @@ class EventController {
             return
         }
 
+		eventInstance.organizer = springSecurityService.getCurrentUser()
         eventInstance.save flush:true
 
         request.withFormat {
@@ -94,8 +96,22 @@ class EventController {
             '*'{ render status: NO_CONTENT }
         }
     }
+	
+	def getEventImage() {
+		def event = Event.get(Long.parseLong(params.id, 10))
+		
+		if(!event) {
+			notFound()
+			return
+		}
+		
+		byte[] image = event.image
+		response.outputStream << image
+	}
 
     protected void notFound() {
+		log.debug("Event not found")
+		
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'event.label', default: 'Event'), params.id])

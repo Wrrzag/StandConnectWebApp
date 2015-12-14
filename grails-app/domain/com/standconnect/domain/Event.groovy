@@ -18,8 +18,12 @@ class Event {
 	static belongsTo = [organizer: Organizer]
 	
     static constraints = {
-		image nullable: true//, maxsize: 
+		image nullable: true, maxsize: 1024*1024
     }
+	
+	static mapping = {
+		image type: 'image'
+	}
 	
 	def getBasicInfo() {
 		return [

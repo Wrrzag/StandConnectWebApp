@@ -23,16 +23,16 @@
 			</g:if>
 			<ol class="property-list tag">
 			
-				<g:if test="${tagInstance?.businessTagProduct}">
-				<li class="fieldcontain">
-					<span id="businessTagProduct-label" class="property-label"><g:message code="tag.businessTagProduct.label" default="Business Tag Product" /></span>
-					
-						<g:each in="${tagInstance.businessTagProduct}" var="b">
-						<span class="property-value" aria-labelledby="businessTagProduct-label"><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+<%--				<g:if test="${tagInstance?.businessTagProduct}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="businessTagProduct-label" class="property-label"><g:message code="tag.businessTagProduct.label" default="Business Tag Product" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${tagInstance.businessTagProduct}" var="b">--%>
+<%--						<span class="property-value" aria-labelledby="businessTagProduct-label"><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 				<g:if test="${tagInstance?.name}">
 				<li class="fieldcontain">
@@ -43,16 +43,16 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${tagInstance?.visitorEventTag}">
-				<li class="fieldcontain">
-					<span id="visitorEventTag-label" class="property-label"><g:message code="tag.visitorEventTag.label" default="Visitor Event Tag" /></span>
-					
-						<g:each in="${tagInstance.visitorEventTag}" var="v">
-						<span class="property-value" aria-labelledby="visitorEventTag-label"><g:link controller="visitorEventTag" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+<%--				<g:if test="${tagInstance?.visitorEventTag}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="visitorEventTag-label" class="property-label"><g:message code="tag.visitorEventTag.label" default="Visitor Event Tag" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${tagInstance.visitorEventTag}" var="v">--%>
+<%--						<span class="property-value" aria-labelledby="visitorEventTag-label"><g:link controller="visitorEventTag" action="show" id="${v.id}">${v?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 			</ol>
 			<g:form url="[resource:tagInstance, action:'delete']" method="DELETE">
