@@ -57,7 +57,7 @@ class StandService {
 		standReturn["name"] = stand.name
 		standReturn["number"] = stand.number
 		standReturn["businesses"] = businesses
-		standReturn["beacon"] = beacons
+		standReturn["beacons"] = beacons
 		standReturn["event"] = stand.event.getBasicInfo()
 		
 		return standReturn

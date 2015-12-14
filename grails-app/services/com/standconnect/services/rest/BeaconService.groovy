@@ -11,7 +11,7 @@ class BeaconService {
 	def relationshipService
 	
     def list() {
-		return Beacon.collect() {
+		return Beacon.list().collect() {
 			getBeaconInfo(it)
 		}
     }

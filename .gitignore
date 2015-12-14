@@ -1,3 +1,5 @@
 *.class
 *.war
 target/
+target-eclipse/
+*/*.class

@@ -4,11 +4,11 @@ class UrlMappings {
 		
 		// REST 
 		"/api/events"(resources: "event", includes:['index', 'show'], namespace: "api") {
-			"/stands"		(resources: "stand", includes:['index', 'show'], namespace: "api") // <- this
+			"/stands"		(resources: "stand", includes:['index', 'show'], namespace: "api") // <- this DONE
 //			"/visitors"		(resources: "visitor", includes:['index', 'show'], namespace: "api")
-			"/businesses"	(resources: "business", includes:['index', 'show'], namespace: "api") // <- this
-			"/products"		(resources: "product", includes:['index', 'show'], namespace: "api") // <- this
-			"/tags"			(resources: "tag", includes:['index', 'show'], namespace: "api")// <- this
+			"/businesses"	(resources: "business", includes:['index', 'show'], namespace: "api") // <- this DONE
+			"/products"		(resources: "product", includes:['index', 'show'], namespace: "api") // <- this DONE
+			"/tags"			(resources: "tag", includes:['index', 'show'], namespace: "api") // <- this DONE
 			"/beacons"		(resources: "beacon", includes:['index', 'show'], namespace: "api") // <- this DONE
 		}
 		

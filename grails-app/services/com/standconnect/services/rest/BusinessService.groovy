@@ -12,7 +12,7 @@ class BusinessService {
 	def relationshipService
 	
 	def list() {
-		return Business.collect() {
+		return Business.list().collect() {
 			getBusinessInfo(it)
 		}
 	}

@@ -132,7 +132,7 @@ class BootStrap {
 			relationshipService.newEventBusiness(event1, business)
 			log.debug("Business added to event 1")
 			relationshipService.newStandBeaconBusiness(stands[0], beacon, business)
-			log.debug("Beacon added to business and stand ${stands[0]}")
+			log.debug("Beacon added to business $business and stand ${stands[0]}")
 			
 			// Add some tags to the products
 			log.debug("Adding tags to the products...")

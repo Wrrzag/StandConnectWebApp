@@ -16,7 +16,7 @@ class Product {
 		image nullable: true//, maxsize:
     }
 	
-	def returnBasicInfo() {
+	def getBasicInfo() {
 		return [
 			"id" : this.id, "name" : this.name, "description" : this.description,
 			"price" : this.price, "image" : this.image, "business" : this.business.getBasicInfo()	

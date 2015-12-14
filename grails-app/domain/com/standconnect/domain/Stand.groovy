@@ -7,17 +7,19 @@ class Stand {
 	
 	String name
 	int number
+	byte[] image
 	
 	static hasMany = [standBeaconBusiness: StandBeaconBusiness]
 	static belongsTo = [event: Event]
 	
     static constraints = {
+		image nullable: true//, maxsize:s
     }
 	
 	def getBasicInfo() {
 		return [
 			"id" : this.id, "name" : this.name, "number" : this.number, 
-			"event" : this.event.getBasicInfo()
+			"image" : this.image, "event" : this.event.getBasicInfo()
 		]
 	}
 	
