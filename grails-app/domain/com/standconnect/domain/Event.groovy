@@ -33,4 +33,8 @@ class Event {
 			"organizer" : this.organizer.getBasicInfo()
 		]
 	}
+	
+	String toString() {
+		return name
+	}
 }

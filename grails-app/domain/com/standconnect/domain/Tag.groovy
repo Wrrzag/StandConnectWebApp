@@ -17,4 +17,8 @@ class Tag {
 			"id" : this.id, "name" : this.name	
 		]
 	}
+	
+	String toString() {
+		return name
+	}
 }

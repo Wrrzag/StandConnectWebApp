@@ -12,7 +12,9 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
+					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				</sec:ifAnyGranted>
 			</ul>
 		</div>
 		<div id="list-business" class="content scaffold-list" role="main">
@@ -26,34 +28,36 @@
 					
 						<g:sortableColumn property="image" title="${message(code: 'business.image.label', default: 'Image')}" />
 					
+						<g:sortableColumn property="name" title="${message(code: 'business.name.label', default: 'Name')}" />
+						
+						<g:sortableColumn property="description" title="${message(code: 'business.description.label', default: 'Description')}" />
+						
 						<g:sortableColumn property="address" title="${message(code: 'business.address.label', default: 'Address')}" />
 					
 						<th><g:message code="business.businessUser.label" default="Business User" /></th>
 					
 						<g:sortableColumn property="contact" title="${message(code: 'business.contact.label', default: 'Contact')}" />
-					
-						<g:sortableColumn property="description" title="${message(code: 'business.description.label', default: 'Description')}" />
-					
-						<g:sortableColumn property="name" title="${message(code: 'business.name.label', default: 'Name')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${businessInstanceList}" status="i" var="businessInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${businessInstance.id}">${fieldValue(bean: businessInstance, field: "image")}</g:link></td>
+						<td>
+							<g:if test="${businessInstance.image}">
+								<img style="width:50px" class="photo" src="${createLink(controller:'business', action:'getBusinessImage', id:"${businessInstance.id}")}" />
+							</g:if>
+						</td>
 					
+						<td><g:link action="show" id="${businessInstance.id}">${fieldValue(bean: businessInstance, field: "name")}</g:link></td>
+						
+						<td>${fieldValue(bean: businessInstance, field: "description")}</td>
+						
 						<td>${fieldValue(bean: businessInstance, field: "address")}</td>
 					
 						<td>${fieldValue(bean: businessInstance, field: "businessUser")}</td>
 					
 						<td>${fieldValue(bean: businessInstance, field: "contact")}</td>
-					
-						<td>${fieldValue(bean: businessInstance, field: "description")}</td>
-					
-						<td>${fieldValue(bean: businessInstance, field: "name")}</td>
-					
 					</tr>
 				</g:each>
 				</tbody>

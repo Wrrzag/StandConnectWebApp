@@ -25,4 +25,8 @@ class Beacon {
 		
 		return info
 	}
+	
+	String toString() {
+		return name
+	}
 }

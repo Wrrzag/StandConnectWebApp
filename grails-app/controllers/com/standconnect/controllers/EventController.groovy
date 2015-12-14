@@ -3,10 +3,10 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.Event;
-
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Event
 
 @Transactional(readOnly = true)
 class EventController {
@@ -23,23 +23,26 @@ class EventController {
         respond eventInstance
     }
 
+	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def create() {
         respond new Event(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def save(Event eventInstance) {
         if (eventInstance == null) {
             notFound()
             return
         }
 
-        if (eventInstance.hasErrors()) {
+		eventInstance.organizer = springSecurityService.getCurrentUser()
+		
+        if (!eventInstance.save()) {
             respond eventInstance.errors, view:'create'
             return
         }
 
-		eventInstance.organizer = springSecurityService.getCurrentUser()
         eventInstance.save flush:true
 
         request.withFormat {
@@ -51,11 +54,13 @@ class EventController {
         }
     }
 
+	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def edit(Event eventInstance) {
         respond eventInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def update(Event eventInstance) {
         if (eventInstance == null) {
             notFound()
@@ -79,6 +84,7 @@ class EventController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def delete(Event eventInstance) {
 
         if (eventInstance == null) {
@@ -97,7 +103,7 @@ class EventController {
         }
     }
 	
-	def getEventImage() {
+	def getEventImage() {println params.id
 		def event = Event.get(Long.parseLong(params.id, 10))
 		
 		if(!event) {

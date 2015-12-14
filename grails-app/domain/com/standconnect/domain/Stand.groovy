@@ -29,4 +29,8 @@ class Stand {
 		
 		return info
 	}
+	
+	String toString() {
+		return name
+	}
 }

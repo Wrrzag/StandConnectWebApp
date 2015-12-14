@@ -26,13 +26,13 @@
 					
 						<g:sortableColumn property="image" title="${message(code: 'product.image.label', default: 'Image')}" />
 					
-						<th><g:message code="product.business.label" default="Business" /></th>
-					
+						<g:sortableColumn property="name" title="${message(code: 'product.name.label', default: 'Name')}" />
+						
 						<g:sortableColumn property="description" title="${message(code: 'product.description.label', default: 'Description')}" />
 					
-						<g:sortableColumn property="name" title="${message(code: 'product.name.label', default: 'Name')}" />
-					
 						<g:sortableColumn property="price" title="${message(code: 'product.price.label', default: 'Price')}" />
+						
+						<th><g:message code="product.business.label" default="Business" /></th>
 					
 					</tr>
 				</thead>
@@ -40,15 +40,19 @@
 				<g:each in="${productInstanceList}" status="i" var="productInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${productInstance.id}">${fieldValue(bean: productInstance, field: "image")}</g:link></td>
+						<td>
+							<g:if test="${productInstance.image}">
+								<img style="width:50px" class="photo" src="${createLink(controller:'product', action:'getProductImage', id:"${productInstance.id}")}" />
+							</g:if>
+						</td>
 					
-						<td>${fieldValue(bean: productInstance, field: "business")}</td>
-					
+						<td><g:link action="show" id="${productInstance.id}">${fieldValue(bean: productInstance, field: "name")}</g:link></td>
+						
 						<td>${fieldValue(bean: productInstance, field: "description")}</td>
 					
-						<td>${fieldValue(bean: productInstance, field: "name")}</td>
-					
 						<td>${fieldValue(bean: productInstance, field: "price")}</td>
+						
+						<td>${fieldValue(bean: productInstance, field: "business")}</td>
 					
 					</tr>
 				</g:each>

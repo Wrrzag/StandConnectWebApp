@@ -22,4 +22,8 @@ class Product {
 			"price" : this.price, "image" : this.image, "business" : this.business.getBasicInfo()	
 		]
 	}
+	
+	String toString() {
+		return name
+	}
 }

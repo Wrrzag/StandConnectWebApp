@@ -30,4 +30,8 @@ class Business {
 			'contact' : this.contact, 'phone' : this.phone, 'address' : this.address
 		]
 	}
+	
+	String toString() {
+		return name
+	}
 }

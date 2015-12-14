@@ -32,14 +32,14 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${visitorInstance?.password}">
-				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="visitor.password.label" default="Password" /></span>
-					
-						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${visitorInstance}" field="password"/></span>
-					
-				</li>
-				</g:if>
+<%--				<g:if test="${visitorInstance?.password}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="password-label" class="property-label"><g:message code="visitor.password.label" default="Password" /></span>--%>
+<%--					--%>
+<%--						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${visitorInstance}" field="password"/></span>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 				<g:if test="${visitorInstance?.name}">
 				<li class="fieldcontain">

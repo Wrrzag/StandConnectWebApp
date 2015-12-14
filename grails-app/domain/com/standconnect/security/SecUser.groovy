@@ -41,7 +41,8 @@ class SecUser implements Serializable {
 
 	@Override
 	String toString() {
-		username
+		//username
+		name
 	}
 
 	Set<SecRole> getAuthorities() {

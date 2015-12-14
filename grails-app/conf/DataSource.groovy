@@ -24,12 +24,12 @@ environments {
 			dialect = "com.fixes.ImprovedH2Dialect"
 			
 			
-//			url = "jdbc:postgresql://localhost:5432/standconnectdev"
-//			driverClassName = "org.postgresql.Driver"
-//			dialect = "org.hibernate.dialect.PostgreSQLDialect"
-//			username = "root"
-//			password = "root"
-			url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+			url = "jdbc:postgresql://localhost:5432/standconnectdev"
+			driverClassName = "org.postgresql.Driver"
+			dialect = "org.hibernate.dialect.PostgreSQLDialect"
+			username = "root"
+			password = "root"
+//			url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
     }
     test {

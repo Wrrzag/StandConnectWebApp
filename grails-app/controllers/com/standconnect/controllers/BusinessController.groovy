@@ -3,15 +3,15 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.Business;
-
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Business
 
 @Transactional(readOnly = true)
 class BusinessController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -22,11 +22,13 @@ class BusinessController {
         respond businessInstance
     }
 
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def create() {
         respond new Business(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def save(Business businessInstance) {
         if (businessInstance == null) {
             notFound()
@@ -49,11 +51,13 @@ class BusinessController {
         }
     }
 
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def edit(Business businessInstance) {
         respond businessInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def update(Business businessInstance) {
         if (businessInstance == null) {
             notFound()
@@ -77,6 +81,7 @@ class BusinessController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def delete(Business businessInstance) {
 
         if (businessInstance == null) {
@@ -95,6 +100,18 @@ class BusinessController {
         }
     }
 
+	def getBusinessImage() {
+		def business = Business.get(Long.parseLong(params.id, 10))
+		
+		if(!business) {
+			notFound()
+			return
+		}
+		
+		byte[] image = business.image
+		response.outputStream << image
+	}
+	
     protected void notFound() {
         request.withFormat {
             form multipartForm {

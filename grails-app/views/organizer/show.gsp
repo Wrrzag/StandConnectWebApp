@@ -32,14 +32,14 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${organizerInstance?.password}">
-				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="organizer.password.label" default="Password" /></span>
-					
-						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${organizerInstance}" field="password"/></span>
-					
-				</li>
-				</g:if>
+<%--				<g:if test="${organizerInstance?.password}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="password-label" class="property-label"><g:message code="organizer.password.label" default="Password" /></span>--%>
+<%--					--%>
+<%--						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${organizerInstance}" field="password"/></span>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 				<g:if test="${organizerInstance?.name}">
 				<li class="fieldcontain">
