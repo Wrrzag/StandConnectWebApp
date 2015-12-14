@@ -26,7 +26,7 @@ class BootStrap {
 								mail: 'admin@nimda.com').save()
 		log.debug("Admin user created")
 		
-		new SecUserSecRole(user: adminUser, role: adminRole).save()
+		new SecUserSecRole(secUser: adminUser, secRole: adminRole).save()
 		log.debug("Assigned ROLE_ADMIN to admin user")
 		
 		if(grailsApplication.config.dataSource.dbCreate != "update") {
@@ -42,6 +42,9 @@ class BootStrap {
 											city: 'London',
 											postalCode: '341349',
 											gender: SecUser.Gender.MALE).save()
+			def organizerRole = new SecRole("ROLE_ORGANIZER").save(failOnError: true)
+			new SecUserSecRole(secUser: organizer, secRole: organizerRole).save(failOnError: true)
+			
 			log.debug("Organizer user created")
 			def businessUser = new BusinessUser(username: 'buser', 
 											password: 'buser',
@@ -51,6 +54,8 @@ class BootStrap {
 											city: 'Lleida',
 											postalCode: '25001',
 											gender: SecUser.Gender.FEMALE).save()
+			def businessRole = new SecRole("ROLE_BUSINESSUSER").save()
+			new SecUserSecRole(secUser: businessUser, secRole: businessRole).save()
 			log.debug("Business user created")								
 				
 			def visitors = []
