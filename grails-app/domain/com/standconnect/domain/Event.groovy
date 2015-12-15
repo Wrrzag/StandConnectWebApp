@@ -2,7 +2,6 @@ package com.standconnect.domain
 
 import com.standconnect.domain.relationships.EventBusiness
 import com.standconnect.domain.relationships.VisitorEvent
-import com.standconnect.domain.relationships.VisitorEventTag
 
 
 
@@ -14,7 +13,7 @@ class Event {
 	String location
 	byte[] image
 	
-	static hasMany = [/*visitorEventTag: VisitorEventTag, */stands: Stand, eventBusiness: EventBusiness, visitorEvent: VisitorEvent]
+	static hasMany = [stands: Stand, eventBusiness: EventBusiness, visitorEvent: VisitorEvent]
 	static belongsTo = [organizer: Organizer]
 	
     static constraints = {

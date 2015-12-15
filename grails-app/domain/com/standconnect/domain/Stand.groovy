@@ -13,8 +13,12 @@ class Stand {
 	static belongsTo = [event: Event]
 	
     static constraints = {
-		image nullable: true//, maxsize:s
-    }
+		image nullable: true, maxsize: 1024*1024
+	}
+	
+	static mapping = {
+		image type: 'image'
+	}
 	
 	def getBasicInfo() {
 		return [
