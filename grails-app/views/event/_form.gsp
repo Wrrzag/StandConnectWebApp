@@ -55,7 +55,7 @@
         <input type="checkbox" id="replaceImage" name="replaceImage" />
     </div>
     
-    <div id="image">
+    <div id="imageInput">
 		<label for="image"> 
 		   <g:message code="event.image.label" default="Image" />
 		</label> 

@@ -1,40 +1,11 @@
 <%@ page import="com.standconnect.domain.Product" %>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'image', 'error')} ">
-	<label for="image">
-		<g:message code="product.image.label" default="Image" />
-		
-	</label>
-	<input type="file" id="image" name="image" />
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'business', 'error')} required">
-	<label for="business">
-		<g:message code="product.business.label" default="Business" />
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'name', 'error')} required">
+	<label for="name">
+		<g:message code="product.name.label" default="Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="business" name="business.id" from="${com.standconnect.domain.Business.list()}" optionKey="id" required="" value="${productInstance?.business?.id}" class="many-to-one"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'businessTagProduct', 'error')} ">
-	<label for="businessTagProduct">
-		<g:message code="product.businessTagProduct.label" default="Business Tag Product" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${productInstance?.businessTagProduct?}" var="b">
-    <li><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="businessTagProduct" action="create" params="['product.id': productInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'businessTagProduct.label', default: 'BusinessTagProduct')])}</g:link>
-</li>
-</ul>
-
+	<g:textField name="name" required="" value="${productInstance?.name}"/>
 
 </div>
 
@@ -47,15 +18,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'name', 'error')} required">
-	<label for="name">
-		<g:message code="product.name.label" default="Name" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="name" required="" value="${productInstance?.name}"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: productInstance, field: 'price', 'error')} required">
 	<label for="price">
 		<g:message code="product.price.label" default="Price" />
@@ -64,4 +26,47 @@
 	<g:textField name="price" required="" value="${productInstance?.price}"/>
 
 </div>
+
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'image', 'error')} ">
+	<div id="imageControl" hidden>
+        <label for="replaceImage"> 
+           <g:message code="product.image.replace.label" default="Replace Image" />
+        </label> 
+        <input type="checkbox" id="replaceImage" name="replaceImage" />
+    </div>
+    
+    <div id="imageInput">
+		<label for="image"> 
+		   <g:message code="product.image.label" default="Image" />
+		</label> 
+		<input type="file" id="image" name="image" />
+	</div>
+</div>
+
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'business', 'error')} required">--%>
+<%--	<label for="business">--%>
+<%--		<g:message code="product.business.label" default="Business" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:select id="business" name="business.id" from="${com.standconnect.domain.Business.list()}" optionKey="id" required="" value="${productInstance?.business?.id}" class="many-to-one"/>--%>
+<%----%>
+<%--</div>--%>
+
+<%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'businessTagProduct', 'error')} ">--%>
+<%--	<label for="businessTagProduct">--%>
+<%--		<g:message code="product.businessTagProduct.label" default="Business Tag Product" />--%>
+<%--		--%>
+<%--	</label>--%>
+<%--	--%>
+<%--<ul class="one-to-many">--%>
+<%--<g:each in="${productInstance?.businessTagProduct?}" var="b">--%>
+<%--    <li><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></li>--%>
+<%--</g:each>--%>
+<%--<li class="add">--%>
+<%--<g:link controller="businessTagProduct" action="create" params="['product.id': productInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'businessTagProduct.label', default: 'BusinessTagProduct')])}</g:link>--%>
+<%--</li>--%>
+<%--</ul>--%>
+<%----%>
+<%----%>
+<%--</div>--%>
 

@@ -30,40 +30,20 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${productInstance?.business}">
-				<li class="fieldcontain">
-					<span id="business-label" class="property-label"><g:message code="product.business.label" default="Business" /></span>
-					
-						<span class="property-value" aria-labelledby="business-label"><g:link controller="business" action="show" id="${productInstance?.business?.id}">${productInstance?.business?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${productInstance?.businessTagProduct}">
-				<li class="fieldcontain">
-					<span id="businessTagProduct-label" class="property-label"><g:message code="product.businessTagProduct.label" default="Business Tag Product" /></span>
-					
-						<g:each in="${productInstance.businessTagProduct}" var="b">
-						<span class="property-value" aria-labelledby="businessTagProduct-label"><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${productInstance?.description}">
-				<li class="fieldcontain">
-					<span id="description-label" class="property-label"><g:message code="product.description.label" default="Description" /></span>
-					
-						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${productInstance}" field="description"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${productInstance?.name}">
 				<li class="fieldcontain">
 					<span id="name-label" class="property-label"><g:message code="product.name.label" default="Name" /></span>
 					
 						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${productInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+				
+				<g:if test="${productInstance?.description}">
+				<li class="fieldcontain">
+					<span id="description-label" class="property-label"><g:message code="product.description.label" default="Description" /></span>
+					
+						<span class="property-value" aria-labelledby="description-label"><g:fieldValue bean="${productInstance}" field="description"/></span>
 					
 				</li>
 				</g:if>
@@ -76,6 +56,26 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${productInstance?.business}">
+				<li class="fieldcontain">
+					<span id="business-label" class="property-label"><g:message code="product.business.label" default="Business" /></span>
+					
+						<span class="property-value" aria-labelledby="business-label"><g:link controller="business" action="show" id="${productInstance?.business?.id}">${productInstance?.business?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+<%--				<g:if test="${productInstance?.businessTagProduct}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="businessTagProduct-label" class="property-label"><g:message code="product.businessTagProduct.label" default="Business Tag Product" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${productInstance.businessTagProduct}" var="b">--%>
+<%--						<span class="property-value" aria-labelledby="businessTagProduct-label"><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 			</ol>
 			<g:form url="[resource:productInstance, action:'delete']" method="DELETE">

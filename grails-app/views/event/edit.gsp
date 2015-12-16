@@ -9,14 +9,17 @@
 		<script type="text/javascript">
             $(document).ready(function(){
                 $("#imageControl").show();
-                $("#image").hide();
+                $("#imageInput").hide();
+                $("#image").prop("disabled", true);
 
                 $("#replaceImage").on("change", function() {
                 	if($(this).prop("checked")){
-                        $("#image").show(500);
+                        $("#imageInput").show(500);
+                        $("#image").prop("disabled", false);
                 	}
                 	else {
-                        $("#image").hide(500);
+                        $("#imageInput").hide(500);
+                        $("#image").prop("disabled", true);
                     }
                 });
             });

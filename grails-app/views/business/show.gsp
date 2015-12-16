@@ -32,44 +32,15 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${businessInstance?.address}">
+				<g:if test="${businessInstance?.name}">
 				<li class="fieldcontain">
-					<span id="address-label" class="property-label"><g:message code="business.address.label" default="Address" /></span>
+					<span id="name-label" class="property-label"><g:message code="business.name.label" default="Name" /></span>
 					
-						<span class="property-value" aria-labelledby="address-label"><g:fieldValue bean="${businessInstance}" field="address"/></span>
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${businessInstance}" field="name"/></span>
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${businessInstance?.businessTagProduct}">
-				<li class="fieldcontain">
-					<span id="businessTagProduct-label" class="property-label"><g:message code="business.businessTagProduct.label" default="Business Tag Product" /></span>
-					
-						<g:each in="${businessInstance.businessTagProduct}" var="b">
-						<span class="property-value" aria-labelledby="businessTagProduct-label"><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${businessInstance?.businessUser}">
-				<li class="fieldcontain">
-					<span id="businessUser-label" class="property-label"><g:message code="business.businessUser.label" default="Business User" /></span>
-					
-						<span class="property-value" aria-labelledby="businessUser-label"><g:link controller="businessUser" action="show" id="${businessInstance?.businessUser?.id}">${businessInstance?.businessUser?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${businessInstance?.contact}">
-				<li class="fieldcontain">
-					<span id="contact-label" class="property-label"><g:message code="business.contact.label" default="Contact" /></span>
-					
-						<span class="property-value" aria-labelledby="contact-label"><g:fieldValue bean="${businessInstance}" field="contact"/></span>
-					
-				</li>
-				</g:if>
-			
+				
 				<g:if test="${businessInstance?.description}">
 				<li class="fieldcontain">
 					<span id="description-label" class="property-label"><g:message code="business.description.label" default="Description" /></span>
@@ -78,23 +49,12 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${businessInstance?.eventBusiness}">
+				
+				<g:if test="${businessInstance?.address}">
 				<li class="fieldcontain">
-					<span id="eventBusiness-label" class="property-label"><g:message code="business.eventBusiness.label" default="Event Business" /></span>
+					<span id="address-label" class="property-label"><g:message code="business.address.label" default="Address" /></span>
 					
-						<g:each in="${businessInstance.eventBusiness}" var="e">
-						<span class="property-value" aria-labelledby="eventBusiness-label"><g:link controller="eventBusiness" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${businessInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="business.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${businessInstance}" field="name"/></span>
+						<span class="property-value" aria-labelledby="address-label"><g:fieldValue bean="${businessInstance}" field="address"/></span>
 					
 				</li>
 				</g:if>
@@ -107,29 +67,16 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${businessInstance?.products}">
+				
+				<g:if test="${businessInstance?.contact}">
 				<li class="fieldcontain">
-					<span id="products-label" class="property-label"><g:message code="business.products.label" default="Products" /></span>
+					<span id="contact-label" class="property-label"><g:message code="business.contact.label" default="Contact" /></span>
 					
-						<g:each in="${businessInstance.products}" var="p">
-						<span class="property-value" aria-labelledby="products-label"><g:link controller="product" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
+						<span class="property-value" aria-labelledby="contact-label"><g:fieldValue bean="${businessInstance}" field="contact"/></span>
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${businessInstance?.standBeaconBusiness}">
-				<li class="fieldcontain">
-					<span id="standBeaconBusiness-label" class="property-label"><g:message code="business.standBeaconBusiness.label" default="Stand Beacon Business" /></span>
-					
-						<g:each in="${businessInstance.standBeaconBusiness}" var="s">
-						<span class="property-value" aria-labelledby="standBeaconBusiness-label"><g:link controller="standBeaconBusiness" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
+				
 				<g:if test="${businessInstance?.standNumber}">
 				<li class="fieldcontain">
 					<span id="standNumber-label" class="property-label"><g:message code="business.standNumber.label" default="Stand Number" /></span>
@@ -138,6 +85,65 @@
 					
 				</li>
 				</g:if>
+				
+				
+				
+				
+<%--				--%>
+<%--				<g:if test="${businessInstance?.businessTagProduct}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="businessTagProduct-label" class="property-label"><g:message code="business.businessTagProduct.label" default="Business Tag Product" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${businessInstance.businessTagProduct}" var="b">--%>
+<%--						<span class="property-value" aria-labelledby="businessTagProduct-label"><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
+<%--			--%>
+<%--				<g:if test="${businessInstance?.businessUser}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="businessUser-label" class="property-label"><g:message code="business.businessUser.label" default="Business User" /></span>--%>
+<%--					--%>
+<%--						<span class="property-value" aria-labelledby="businessUser-label"><g:link controller="businessUser" action="show" id="${businessInstance?.businessUser?.id}">${businessInstance?.businessUser?.encodeAsHTML()}</g:link></span>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
+<%--			--%>
+<%--				<g:if test="${businessInstance?.eventBusiness}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="eventBusiness-label" class="property-label"><g:message code="business.eventBusiness.label" default="Event Business" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${businessInstance.eventBusiness}" var="e">--%>
+<%--						<span class="property-value" aria-labelledby="eventBusiness-label"><g:link controller="eventBusiness" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
+<%--			--%>
+<%--				<g:if test="${businessInstance?.products}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="products-label" class="property-label"><g:message code="business.products.label" default="Products" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${businessInstance.products}" var="p">--%>
+<%--						<span class="property-value" aria-labelledby="products-label"><g:link controller="product" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
+<%--			--%>
+<%--				<g:if test="${businessInstance?.standBeaconBusiness}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="standBeaconBusiness-label" class="property-label"><g:message code="business.standBeaconBusiness.label" default="Stand Beacon Business" /></span>--%>
+<%--					--%>
+<%--						<g:each in="${businessInstance.standBeaconBusiness}" var="s">--%>
+<%--						<span class="property-value" aria-labelledby="standBeaconBusiness-label"><g:link controller="standBeaconBusiness" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>--%>
+<%--						</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
+			
+				
 			
 			</ol>
 			<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
