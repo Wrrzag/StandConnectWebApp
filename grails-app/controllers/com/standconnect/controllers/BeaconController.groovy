@@ -3,10 +3,10 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.Beacon;
-
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Beacon
 
 @Transactional(readOnly = true)
 class BeaconController {
@@ -22,11 +22,13 @@ class BeaconController {
         respond beaconInstance
     }
 
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def create() {
         respond new Beacon(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def save(Beacon beaconInstance) {
         if (beaconInstance == null) {
             notFound()
@@ -49,11 +51,13 @@ class BeaconController {
         }
     }
 
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def edit(Beacon beaconInstance) {
         respond beaconInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def update(Beacon beaconInstance) {
         if (beaconInstance == null) {
             notFound()
@@ -77,6 +81,7 @@ class BeaconController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def delete(Beacon beaconInstance) {
 
         if (beaconInstance == null) {

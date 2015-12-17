@@ -9,6 +9,7 @@ class Beacon {
 	String mac
 	
 	static hasMany = [standBeaconBusiness: StandBeaconBusiness]
+	static belongsTo = [business: Business]
 	
     static constraints = {
     }

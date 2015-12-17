@@ -12,4 +12,8 @@ class BusinessUser extends SecUser {
 		postalCode blank: false, nullable: false
 		gender nullable: false
     }
+	
+	static mapping = {
+		tablePerHierarchy false
+	}
 }
