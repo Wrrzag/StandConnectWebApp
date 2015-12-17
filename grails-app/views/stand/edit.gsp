@@ -6,24 +6,7 @@
 		<g:set var="entityName" value="${message(code: 'stand.label', default: 'Stand')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 		
-		<script type="text/javascript">
-            $(document).ready(function(){
-                $("#imageControl").show();
-                $("#imageInput").hide();
-                $("#image").prop("disabled", true);
-
-                $("#replaceImage").on("change", function() {
-                	if($(this).prop("checked")){
-                        $("#imageInput").show(500);
-                        $("#image").prop("disabled", false);
-                	}
-                	else {
-                        $("#imageInput").hide(500);
-                        $("#image").prop("disabled", true);
-                    }
-                });
-            });
-        </script>
+		<script src="${resource(dir: 'js', file: 'replaceImage.js')}" type="text/javascript"></script>
 	</head>
 	<body>
 		<a href="#edit-stand" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
