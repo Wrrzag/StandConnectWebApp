@@ -13,6 +13,8 @@ class BusinessController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
+	def springSecurityService
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Business.list(params), model:[businessInstanceCount: Business.count()]
@@ -35,7 +37,9 @@ class BusinessController {
             return
         }
 
-        if (businessInstance.hasErrors()) {
+		businessInstance.businessUser = springSecurityService.getCurrentUser()
+		
+        if (!businessInstance.save()) {
             respond businessInstance.errors, view:'create'
             return
         }

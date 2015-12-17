@@ -16,7 +16,7 @@ class Business {
 	String phone
 	String address
 	
-	static hasMany = [standBeaconBusiness: StandBeaconBusiness, businessTagProduct: BusinessTagProduct, eventBusiness: EventBusiness, products: Product]
+	static hasMany = [beacon: Beacon, standBeaconBusiness: StandBeaconBusiness, businessTagProduct: BusinessTagProduct, eventBusiness: EventBusiness, products: Product]
 	static belongsTo = [businessUser: BusinessUser]
 	
     static constraints = {
