@@ -3,16 +3,25 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.Organizer;
-
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Event
+import com.standconnect.domain.Organizer
 
 @Transactional(readOnly = true)
 class OrganizerController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def springSecurityService
+	
+	def eventList(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		respond Event.createCriteria().list(params) {
+			eq('organizer', springSecurityService.getCurrentUser())
+		}
+	}
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Organizer.list(params), model:[organizerInstanceCount: Organizer.count()]

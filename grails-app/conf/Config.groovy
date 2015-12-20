@@ -119,7 +119,10 @@ log4j.main = {
 		  
 }
 
+grails.converters.default.pretty.print = true
+
 // Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/secUser/home'
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.standconnect.security.SecUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.standconnect.security.SecUserSecRole'

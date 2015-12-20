@@ -3,16 +3,25 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.BusinessUser;
-
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Business
+import com.standconnect.domain.BusinessUser
 
 @Transactional(readOnly = true)
 class BusinessUserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def springSecurityService
+	
+	def businessList(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		respond Business.createCriteria().list(params) {
+			eq('businessUser', springSecurityService.getCurrentUser())
+		}
+	}
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond BusinessUser.list(params), model:[businessUserInstanceCount: BusinessUser.count()]

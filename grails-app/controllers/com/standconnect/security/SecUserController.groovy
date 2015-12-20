@@ -8,8 +8,10 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class SecUserController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
+	def springSecurityService
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond SecUser.list(params), model:[secUserInstanceCount: SecUser.count()]
@@ -101,4 +103,17 @@ class SecUserController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def home() {
+		def authorities = springSecurityService.getCurrentUser().authorities*.authority
+		if("ROLE_ADMIN" in authorities) {
+			render view: 'index'
+		}
+		else if("ROLE_ORGANIZER" in authorities) {
+			redirect controller: 'organizer', action: 'eventList'
+		}
+		else if("ROLE_BUSINESSUSER" in authorities) {
+			redirect controller: 'businessUser', action: 'businessList'
+		}
+	}
 }
