@@ -43,13 +43,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${beaconInstance?.standBeaconBusiness}">
+				<g:if test="${beaconInstance?.business}">
 				<li class="fieldcontain">
-					<span id="standBeaconBusiness-label" class="property-label"><g:message code="beacon.standBeaconBusiness.label" default="Stand Beacon Business" /></span>
+					<span id="business-label" class="property-label"><g:message code="beacon.business.label" default="_Business" /></span>
 					
-						<g:each in="${beaconInstance.standBeaconBusiness}" var="s">
-						<span class="property-value" aria-labelledby="standBeaconBusiness-label"><g:link controller="standBeaconBusiness" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
-						</g:each>
+					<span class="property-value" aria-labelledby="business-label"><g:fieldValue bean="${beaconInstance}" field="business"/></span>
 					
 				</li>
 				</g:if>
