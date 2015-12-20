@@ -10,7 +10,6 @@ class Business {
 
 	String name
 	String description
-	int standNumber
 	byte[] image
 	String contact
 	String phone

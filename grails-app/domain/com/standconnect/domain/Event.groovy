@@ -11,6 +11,7 @@ class Event {
 	Date endDate
 	String schedule
 	String location
+	int standNumber
 	byte[] image
 	
 	static hasMany = [stands: Stand, eventBusiness: EventBusiness, visitorEvent: VisitorEvent]

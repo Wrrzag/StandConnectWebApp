@@ -89,6 +89,7 @@ class BootStrap {
 									endDate: new Date(),
 									schedule: "9 AM to 10 PM",
 									location: 'Borricontu',
+									standNumber: 100,
 									organizer: organizer).save()
 			log.debug("Event 1 created")						
 			def event2 = new Event(name: 'Second Event',
@@ -96,13 +97,13 @@ class BootStrap {
 									endDate: new Date(),
 									schedule: "8 AM to 1 PM",
 									location: 'London',
+									standNumber: 10,
 									organizer: organizer).save()
 			log.debug("Event 2 created")						
 			
 															
 			def business = new Business(name: 'DreamFac',
 											description: 'Fabricantes de sueños',
-											standNumber: 6,
 											contact: 'No hi ha contacte',
 											phone: '604928493',
 											address: 'Carrer Et s/n',
@@ -118,7 +119,7 @@ class BootStrap {
 			}
 			log.debug("Products created")
 					
-			def beacon = new Beacon(name: "Beacon 1", mac: "A4:05:09").save()		
+			def beacon = new Beacon(name: "Beacon 1", mac: "A4:05:09", business: business).save()		
 			log.debug("Beacon created")
 			
 			def stands = []

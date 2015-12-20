@@ -77,18 +77,6 @@
 				</li>
 				</g:if>
 				
-				<g:if test="${businessInstance?.standNumber}">
-				<li class="fieldcontain">
-					<span id="standNumber-label" class="property-label"><g:message code="business.standNumber.label" default="Stand Number" /></span>
-					
-						<span class="property-value" aria-labelledby="standNumber-label"><g:fieldValue bean="${businessInstance}" field="standNumber"/></span>
-					
-				</li>
-				</g:if>
-				
-				
-				
-				
 <%--				--%>
 <%--				<g:if test="${businessInstance?.businessTagProduct}">--%>
 <%--				<li class="fieldcontain">--%>

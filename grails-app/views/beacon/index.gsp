@@ -30,6 +30,7 @@
 					
 						<g:sortableColumn property="name" title="${message(code: 'beacon.name.label', default: 'Name')}" />
 					
+						<g:sortableColumn property="business" title="${message(code: 'beacon.business.label', default: '_Business')}" />
 					</tr>
 				</thead>
 				<tbody>
@@ -40,6 +41,7 @@
 					
 						<td>${fieldValue(bean: beaconInstance, field: "name")}</td>
 					
+						<td>${fieldValue(bean: beaconInstance, field: "business")}
 					</tr>
 				</g:each>
 				</tbody>

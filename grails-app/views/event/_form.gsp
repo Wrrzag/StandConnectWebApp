@@ -47,6 +47,15 @@
 	<g:textField name="schedule" required="" value="${eventInstance?.schedule}" />
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'standNumber', 'error')} required">
+	<label for="standNumber">
+		<g:message code="event.standNumber.label" default="_Stand Number" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="standNumber" type="number" value="${eventInstance.standNumber}" required=""/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: eventInstance, field: 'image', 'error')} ">
     <div id="imageControl" hidden>
         <label for="replaceImage"> 

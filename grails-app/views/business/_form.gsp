@@ -46,15 +46,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: businessInstance, field: 'standNumber', 'error')} required">
-	<label for="standNumber">
-		<g:message code="business.standNumber.label" default="Stand Number" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="standNumber" type="number" value="${businessInstance.standNumber}" required=""/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: businessInstance, field: 'image', 'error')} ">
 	<div id="imageControl" hidden>
         <label for="replaceImage"> 

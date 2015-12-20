@@ -13,9 +13,18 @@ class BeaconController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def springSecurityService
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Beacon.list(params), model:[beaconInstanceCount: Beacon.count()]
+        
+//		respond Beacon.list(params), model:[beaconInstanceCount: Beacon.count()]
+		
+		respond Beacon.createCriteria().list(params) {
+			business {
+				eq('businessUser', springSecurityService.getCurrentUser())
+			}
+		}
     }
 
     def show(Beacon beaconInstance) {
