@@ -20,14 +20,14 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: standInstance, field: 'number', 'error')} required">
-	<label for="number">
-		<g:message code="stand.number.label" default="Number" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="number" type="number" value="${standInstance.number}" required=""/>
-
-</div>
+<%--<div class="fieldcontain ${hasErrors(bean: standInstance, field: 'number', 'error')} required">--%>
+<%--	<label for="number">--%>
+<%--		<g:message code="stand.number.label" default="Number" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:field name="number" type="number" value="${standInstance.number}" required=""/>--%>
+<%----%>
+<%--</div>--%>
 
 <div class="fieldcontain ${hasErrors(bean: standInstance, field: 'image', 'error')} ">
 	<div id="imageControl" hidden>
