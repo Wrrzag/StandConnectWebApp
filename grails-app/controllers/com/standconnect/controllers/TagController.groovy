@@ -3,10 +3,10 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.Tag;
-
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Tag
 
 @Transactional(readOnly = true)
 class TagController {
@@ -22,11 +22,13 @@ class TagController {
         respond tagInstance
     }
 
+	@Secured(["ROLE_ADMIN"])
     def create() {
         respond new Tag(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def save(Tag tagInstance) {
         if (tagInstance == null) {
             notFound()
@@ -49,11 +51,13 @@ class TagController {
         }
     }
 
+	@Secured(["ROLE_ADMIN"])
     def edit(Tag tagInstance) {
         respond tagInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def update(Tag tagInstance) {
         if (tagInstance == null) {
             notFound()
@@ -77,6 +81,7 @@ class TagController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def delete(Tag tagInstance) {
 
         if (tagInstance == null) {

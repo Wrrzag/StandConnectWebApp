@@ -3,6 +3,7 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 import com.standconnect.domain.Event
@@ -31,11 +32,13 @@ class OrganizerController {
         respond organizerInstance
     }
 
+	@Secured(["ROLE_ADMIN"])
     def create() {
         respond new Organizer(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def save(Organizer organizerInstance) {
         if (organizerInstance == null) {
             notFound()
@@ -58,11 +61,13 @@ class OrganizerController {
         }
     }
 
+	@Secured(["ROLE_ADMIN"])
     def edit(Organizer organizerInstance) {
         respond organizerInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def update(Organizer organizerInstance) {
         if (organizerInstance == null) {
             notFound()
@@ -86,6 +91,7 @@ class OrganizerController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def delete(Organizer organizerInstance) {
 
         if (organizerInstance == null) {

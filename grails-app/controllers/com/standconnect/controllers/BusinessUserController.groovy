@@ -3,6 +3,7 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 import com.standconnect.domain.Business
@@ -31,11 +32,13 @@ class BusinessUserController {
         respond businessUserInstance
     }
 
+	@Secured(["ROLE_ADMIN"])
     def create() {
         respond new BusinessUser(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def save(BusinessUser businessUserInstance) {
         if (businessUserInstance == null) {
             notFound()
@@ -58,11 +61,13 @@ class BusinessUserController {
         }
     }
 
+	@Secured(["ROLE_ADMIN"])
     def edit(BusinessUser businessUserInstance) {
         respond businessUserInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def update(BusinessUser businessUserInstance) {
         if (businessUserInstance == null) {
             notFound()
@@ -86,6 +91,7 @@ class BusinessUserController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def delete(BusinessUser businessUserInstance) {
 
         if (businessUserInstance == null) {

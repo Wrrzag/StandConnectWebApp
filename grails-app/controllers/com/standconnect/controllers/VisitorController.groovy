@@ -3,10 +3,10 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.Visitor;
-
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Visitor
 
 @Transactional(readOnly = true)
 class VisitorController {
@@ -22,11 +22,13 @@ class VisitorController {
         respond visitorInstance
     }
 
+	@Secured(["ROLE_ADMIN"])
     def create() {
         respond new Visitor(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def save(Visitor visitorInstance) {
         if (visitorInstance == null) {
             notFound()
@@ -49,11 +51,13 @@ class VisitorController {
         }
     }
 
+	@Secured(["ROLE_ADMIN"])
     def edit(Visitor visitorInstance) {
         respond visitorInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def update(Visitor visitorInstance) {
         if (visitorInstance == null) {
             notFound()
@@ -77,6 +81,7 @@ class VisitorController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def delete(Visitor visitorInstance) {
 
         if (visitorInstance == null) {

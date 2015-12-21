@@ -3,10 +3,10 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
-
-import com.standconnect.domain.Product;
-
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+
+import com.standconnect.domain.Product
 
 @Transactional(readOnly = true)
 class ProductController {
@@ -22,11 +22,13 @@ class ProductController {
         respond productInstance
     }
 
+	@Secured(["ROLE_ADMIN", "ROLE_BUSINESSUSER"])
     def create() {
         respond new Product(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN", "ROLE_BUSINESSUSER"])
     def save(Product productInstance) {
         if (productInstance == null) {
             notFound()
@@ -49,11 +51,13 @@ class ProductController {
         }
     }
 
+	@Secured(["ROLE_ADMIN", "ROLE_BUSINESSUSER"])
     def edit(Product productInstance) {
         respond productInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN", "ROLE_BUSINESSUSER"])
     def update(Product productInstance) {
         if (productInstance == null) {
             notFound()
@@ -77,6 +81,7 @@ class ProductController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN", "ROLE_BUSINESSUSER"])
     def delete(Product productInstance) {
 
         if (productInstance == null) {
