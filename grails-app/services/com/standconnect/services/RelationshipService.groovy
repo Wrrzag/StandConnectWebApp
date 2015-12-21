@@ -46,7 +46,8 @@ class RelationshipService {
 	}
 	
 	def getTags(Product product) {
-		return BusinessTagProduct.findAllByProduct(product)*.tag
+//		return BusinessTagProduct.findAllByProduct(product)*.tag
+		return product.businessTagProduct*.tag
 	}
 	
 	def getTags(VisitorEvent visitorEvent) {
@@ -284,5 +285,45 @@ class RelationshipService {
 			log.debug("VisitorEvent $rel saved successfully")
 			return rel
 		}
+	}
+	
+	def removeBusinessTagProducts(Product p) {
+		def err
+		p.businessTagProduct.find {
+			def b = it.business
+			def t = it.tag
+			
+			b.removeFromBusinessTagProduct(it)
+			t.removeFromBusinessTagProduct(it)
+			
+			BusinessTagProduct.withTransaction { status ->
+				if(!b.save() || !t.save()) {
+					status.setRollbackOnly()
+					log.error("Errors removing BusinessTagProduct from related objects")
+					log.error("Business errors -> ${b.errors}")
+					log.error("Tag errors -> ${t.errors}")
+					err = true
+				}
+			}
+			
+			try {
+				it.delete()
+			}
+			catch(Exception e) {
+				log.error("Error deleting BusinessTagProduct. Stacktrace: ${e.printStackTrace()}")
+				err = true
+			}
+			
+			log.debug("BusinessTagProduct $it deleted successfully")
+			return err
+		} 
+		
+		p.businessTagProduct.clear()
+		if(!p.save()) {
+			log.error("Errors removing BusinessTagProducts from Product")
+			log.error("Product errors -> ${p.errors}")
+		}
+		
+		return err
 	}
 }

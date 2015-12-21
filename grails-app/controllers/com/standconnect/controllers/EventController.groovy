@@ -103,7 +103,7 @@ class EventController {
         }
     }
 	
-	def getEventImage() {println params.id
+	def getEventImage() {
 		def event = Event.get(Long.parseLong(params.id, 10))
 		
 		if(!event) {

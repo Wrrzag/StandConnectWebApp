@@ -68,16 +68,15 @@
 				</li>
 				</g:if>
 			
-<%--				<g:if test="${productInstance?.businessTagProduct}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="businessTagProduct-label" class="property-label"><g:message code="product.businessTagProduct.label" default="Business Tag Product" /></span>--%>
-<%--					--%>
-<%--						<g:each in="${productInstance.businessTagProduct}" var="b">--%>
-<%--						<span class="property-value" aria-labelledby="businessTagProduct-label"><g:link controller="businessTagProduct" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>--%>
-<%--						</g:each>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
+				<g:if test="${productInstance?.businessTagProduct}">
+					<li class="fieldcontain">
+						<span id="tags-label" class="property-label"><g:message code="product.tags.label" default="_Tags" /></span>
+						
+						<g:each in="${productInstance.businessTagProduct}" var="b">
+						   <span class="property-value" aria-labelledby="tags-label">${b?.tag}</span>
+						</g:each>
+					</li>
+				</g:if>
 			
 			</ol>
 			<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>

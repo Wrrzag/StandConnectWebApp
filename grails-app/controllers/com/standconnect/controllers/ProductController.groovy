@@ -7,12 +7,15 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 import com.standconnect.domain.Product
+import com.standconnect.domain.Tag
 
 @Transactional(readOnly = true)
 class ProductController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
+	def relationshipService
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Product.list(params), model:[productInstanceCount: Product.count()]
@@ -42,6 +45,17 @@ class ProductController {
 
         productInstance.save flush:true
 
+		def error
+		params.tags.each {
+			def tag = Tag.get(Long.parseLong(it, 10))
+			if(!relationshipService.newBusinessTagProduct(productInstance.business, tag, productInstance)) {
+				println "ups"
+				error = true
+			}
+		}
+		
+		if(error) {/* rollback */}
+		
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'product.label', default: 'Product'), productInstance.id])
@@ -70,6 +84,17 @@ class ProductController {
         }
 
         productInstance.save flush:true
+		
+		def error = relationshipService.removeBusinessTagProducts(productInstance)
+		params.tags.each {
+			def tag = Tag.get(Long.parseLong(it, 10))
+			if(!relationshipService.newBusinessTagProduct(productInstance.business, tag, productInstance)) {
+				println "ups"
+				error = true
+			}
+		}
+		
+		if(error) {/* rollback */}
 
         request.withFormat {
             form multipartForm {

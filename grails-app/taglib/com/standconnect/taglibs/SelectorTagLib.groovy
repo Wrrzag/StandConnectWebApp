@@ -19,12 +19,15 @@ class SelectorTagLib {
 	}
 	
 	def multiSelectTag = { attrs ->
-		def product = attrs?.productInstance
+		def product = attrs?.product
 		
 		def selected = product ? relationshipService.getTags(product) : []
-		def remaining = Tag.list() - selected
+		def remaining = Tag.list()
+		
+		if(selected) remaining.removeAll(selected) 
 		
 		out << "<div class='selectBoxes'>"
+		
 		out << g.select(id: attrs?.id, name: attrs?.name, from: selected, multiple: 'multiple', optionKey: 'id')
 		out << "<div class='selectControls'>"
 		out << """ 
@@ -35,6 +38,8 @@ class SelectorTagLib {
 				function moveAllTo(from, to) {
 				    \$(from).children().appendTo(to);
 				}
+
+				\$("body").on("click", ".save", function(){ \$("#${attrs?.id} option").prop("selected", "selected"); });
 			</script>
 
 			<input type="button" id="allLeft" value="<<" onclick='moveAllTo("#${attrs?.id}Origin", "#${attrs?.id}")' />
@@ -44,7 +49,7 @@ class SelectorTagLib {
 		"""
 		out << "</div>"
 		out << g.select(id: "${attrs?.id}Origin", name: "${attrs?.name}Origin", from: remaining, multiple: 'multiple', optionKey: 'id')
-		out << "</div>"
 		
+		out << "</div>"
 	}
 }
