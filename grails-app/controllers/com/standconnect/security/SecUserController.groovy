@@ -107,7 +107,7 @@ class SecUserController {
 	def home() {
 		def authorities = springSecurityService.getCurrentUser().authorities*.authority
 		if("ROLE_ADMIN" in authorities) {
-			render view: 'index'
+			render view: '/index'
 		}
 		else if("ROLE_ORGANIZER" in authorities) {
 			redirect controller: 'event', action: 'userEvents'
