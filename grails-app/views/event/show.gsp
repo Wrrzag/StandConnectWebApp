@@ -120,16 +120,16 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${eventInstance?.visitorEvent}">
-				<li class="fieldcontain">
-					<span id="visitorEvent-label" class="property-label"><g:message code="event.visitorEvent.label" default="Visitors" /></span>
-					
-					<g:each in="${eventInstance.visitorEvent}" var="v">
-						<span class="property-value" aria-labelledby="visitorEvent-label"><g:link controller="visitorEvent" action="show" id="${v.id}">${v?.visitor?.name}</g:link></span>
-					</g:each>
-					
-				</li>
-				</g:if>
+<%--				<g:if test="${eventInstance?.visitorEvent}">--%>
+<%--				<li class="fieldcontain">--%>
+<%--					<span id="visitor-label" class="property-label"><g:message code="event.visitor.label" default="_Visitors" /></span>--%>
+<%--					--%>
+<%--					<g:each in="${eventInstance.visitorEvent}" var="v">--%>
+<%--						<span class="property-value" aria-labelledby="visitor-label"><g:link controller="visitor" action="show" id="${v?.visitor?.id}">${v?.visitor?.name}</g:link></span>--%>
+<%--					</g:each>--%>
+<%--					--%>
+<%--				</li>--%>
+<%--				</g:if>--%>
 			
 			</ol>
 			<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>

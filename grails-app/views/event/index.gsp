@@ -36,6 +36,8 @@
                         <g:sortableColumn property="endDate" title="${message(code: 'event.endDate.label', default: 'End Date')}" />
                         
 						<th><g:message code="event.organizer.label" default="Organizer" /></th>
+						
+						<th><!-- LIST --></th>
 					
 					</tr>
 				</thead>
@@ -60,6 +62,7 @@
 						
 							<td>${fieldValue(bean: eventInstance, field: "organizer")}</td>
 							
+							<td>LIST</td>
 						</tr>
 					</g:each>
 				</tbody>

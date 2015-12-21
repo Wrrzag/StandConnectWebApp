@@ -31,6 +31,28 @@
             </div>
         </sec:ifNotLoggedIn>
         
+        <sec:ifAnyGranted roles="ROLE_BUSINESSUSER">
+        	<div class="nav" role="navigation">
+				<ul>
+					<li><g:link class="list" controller="business" action="userBusinesses"><g:message code="default.my.businesses.label" default="_My Businesses"/></g:link></li>
+					<li><g:link class="list" controller="event" action="businessEvents"><g:message code="default.attending.events.label" default="_Attending Events" /></g:link></li>
+					<li><g:link class="list" controller="event" action="index"><g:message code="default.event.plural.label" default="_Events" /></g:link></li>
+					<li><g:link class="list" controller="product" action="index"><g:message code="default.product.plural.label" default="_Products" /></g:link></li>
+					<li><g:link class="list" controller="stand" action="index"><g:message code="default.stand.plural.label" default="_Stands" /></g:link></li>
+					<li><g:link class="list" controller="beacon" action="index"><g:message code="default.beacon.plural.label" default="_Beacons" /></g:link></li>
+				</ul>
+			</div>
+        </sec:ifAnyGranted>
+        <sec:ifAnyGranted roles="ROLE_ORGANIZER">
+        	<div class="nav" role="navigation">
+				<ul>
+					<li><g:link class="list" controller="event" action="userEvents"><g:message code="default.my.events.label" default="_My Events" /></g:link></li>
+<%--					<li><g:link class="list" controller="event" action="index"><g:message code="default.event.plural.label" default="_Events" /></g:link></li>--%>
+					<li><g:link class="list" controller="product" action="index"><g:message code="default.product.plural.label" default="_Products" /></g:link></li>
+					<li><g:link class="list" controller="stand" action="index"><g:message code="default.stand.plural.label" default="_Stands" /></g:link></li>
+				</ul>
+			</div>
+        </sec:ifAnyGranted>
 		<g:layoutBody/>
 		
 		<div class="footer" role="contentinfo"></div>
