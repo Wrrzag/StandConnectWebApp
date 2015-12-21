@@ -71,7 +71,7 @@
 <%--				</g:if>--%>
 			
 			</ol>
-			<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>
+			<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
                 <auth:hasPermission instance="${standInstance}">
 					<g:form url="[resource:standInstance, action:'delete']" method="DELETE">
 						<fieldset class="buttons">

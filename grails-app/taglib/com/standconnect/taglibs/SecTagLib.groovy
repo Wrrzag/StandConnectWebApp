@@ -2,6 +2,7 @@ package com.standconnect.taglibs
 
 import com.standconnect.domain.Business
 import com.standconnect.domain.Event
+import com.standconnect.domain.Stand
 
 class SecTagLib {
     static namespace = "auth"
@@ -10,6 +11,7 @@ class SecTagLib {
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
 	
 	def springSecurityService
+	def relationshipService
 	
 	def hasPermission = { attrs, body ->
 		def currentUser = springSecurityService.getCurrentUser()
@@ -24,6 +26,13 @@ class SecTagLib {
 			else if(attrs?.instance?.class == Event.class && attrs?.instance?.organizer == currentUser) {
 				out << body()
 			}
+			else if(attrs?.instance?.class == Stand.class && currentUser in getStandOwner(attrs?.instance)) {
+				out << body()
+			}
 		}
+	}
+	
+	private getStandOwner(standInstance) {
+		relationshipService.getBusinesses(standInstance)*.businessUser
 	}
 }
