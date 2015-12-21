@@ -133,12 +133,14 @@
 			
 			</ol>
 			<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>
-				<g:form url="[resource:eventInstance, action:'delete']" method="DELETE">
-					<fieldset class="buttons">
-						<g:link class="edit" action="edit" resource="${eventInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-					</fieldset>
-				</g:form>
+			    <auth:hasPermission instance="${eventInstance}">
+					<g:form url="[resource:eventInstance, action:'delete']" method="DELETE">
+						<fieldset class="buttons">
+							<g:link class="edit" action="edit" resource="${eventInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+							<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+						</fieldset>
+					</g:form>
+				</auth:hasPermission>
 			</sec:ifAnyGranted>
 		</div>
 	</body>

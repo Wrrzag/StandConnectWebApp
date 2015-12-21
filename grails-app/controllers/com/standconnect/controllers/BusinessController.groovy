@@ -15,6 +15,13 @@ class BusinessController {
 
 	def springSecurityService
 	
+	def userBusinesses(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		respond Business.createCriteria().list(params) {
+			eq('businessUser', springSecurityService.getCurrentUser())
+		}
+	}
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Business.list(params), model:[businessInstanceCount: Business.count()]
@@ -57,12 +64,22 @@ class BusinessController {
 
 	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def edit(Business businessInstance) {
+		if(!hasPermission(businessInstance)) {
+			render status: 403
+			return
+		}
+		
         respond businessInstance
     }
 
     @Transactional
 	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def update(Business businessInstance) {
+		if(!hasPermission(businessInstance)) {
+			render status: 403
+			return
+		}
+		
         if (businessInstance == null) {
             notFound()
             return
@@ -87,7 +104,11 @@ class BusinessController {
     @Transactional
 	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
     def delete(Business businessInstance) {
-
+		if(!hasPermission(businessInstance)) {
+			render status: 403
+			return
+		}
+		
         if (businessInstance == null) {
             notFound()
             return
@@ -125,4 +146,15 @@ class BusinessController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	private hasPermission(businessInstance) {
+		def currentUser = springSecurityService.getCurrentUser()
+		
+		if("ROLE_ADMIN" in currentUser?.authorities*.authority || businessInstance.businessUser == currentUser) {
+			return true
+		}
+		else {
+			return false
+		}
+	}
 }

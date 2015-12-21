@@ -14,6 +14,13 @@ class EventController {
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 	def springSecurityService
 
+	def userEvents(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		respond Event.createCriteria().list(params) {
+			eq('organizer', springSecurityService.getCurrentUser())
+		}
+	}
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Event.list(params), model:[eventInstanceCount: Event.count()]
@@ -56,12 +63,22 @@ class EventController {
 
 	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def edit(Event eventInstance) {
+		if(!hasPermission(eventInstance)) {
+			render status: 403
+			return
+		}
+		
         respond eventInstance
     }
 
     @Transactional
 	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def update(Event eventInstance) {
+		if(!hasPermission(eventInstance)) {
+			render status: 403
+			return
+		}
+		
         if (eventInstance == null) {
             notFound()
             return
@@ -86,7 +103,11 @@ class EventController {
     @Transactional
 	@Secured(["ROLE_ADMIN","ROLE_ORGANIZER"])
     def delete(Event eventInstance) {
-
+		if(!hasPermission(eventInstance)) {
+			render status: 403
+			return
+		}
+		
         if (eventInstance == null) {
             notFound()
             return
@@ -126,4 +147,15 @@ class EventController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	private hasPermission(eventInstance) {
+		def currentUser = springSecurityService.getCurrentUser()
+		
+		if("ROLE_ADMIN" in currentUser?.authorities*.authority || eventInstance.organizer == currentUser) {
+			return true
+		}
+		else {
+			return false
+		}
+	}
 }

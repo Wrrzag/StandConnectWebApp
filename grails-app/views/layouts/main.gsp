@@ -18,7 +18,21 @@
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
+		<locale:list />
+        <sec:ifLoggedIn>
+            <div class="header-login">
+                <g:message code="logged.message" args="[sec.loggedInUserInfo(field: 'username')]" />.
+                <g:link method="POST" controller="Logout"><g:message code="logout.message"/></g:link>
+            </div>
+        </sec:ifLoggedIn>
+        <sec:ifNotLoggedIn>
+            <div class="header-login">
+                <a href="${createLink(uri: '/login')}"><g:message code="login.label"/></a>
+            </div>
+        </sec:ifNotLoggedIn>
+        
 		<g:layoutBody/>
+		
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 	</body>

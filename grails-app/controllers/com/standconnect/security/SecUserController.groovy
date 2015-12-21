@@ -110,10 +110,10 @@ class SecUserController {
 			render view: 'index'
 		}
 		else if("ROLE_ORGANIZER" in authorities) {
-			redirect controller: 'organizer', action: 'eventList'
+			redirect controller: 'event', action: 'userEvents'
 		}
 		else if("ROLE_BUSINESSUSER" in authorities) {
-			redirect controller: 'businessUser', action: 'businessList'
+			redirect controller: 'business', action: 'userBusinesses'
 		}
 	}
 }
