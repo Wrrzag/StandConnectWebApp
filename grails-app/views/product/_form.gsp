@@ -1,5 +1,13 @@
 <%@ page import="com.standconnect.domain.Product" %>
 
+<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'business', 'error')} required">
+    <label for="name">
+        <g:message code="product.business.label" default="_Business" />
+        <span class="required-indicator">*</span>
+    </label>
+    <sel:businesses business="${productInstance.business}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: productInstance, field: 'name', 'error')} required">
 	<label for="name">
 		<g:message code="product.name.label" default="Name" />
@@ -41,6 +49,13 @@
 		</label> 
 		<input type="file" id="image" name="image" />
 	</div>
+</div>
+
+<div class="fieldcontain  required">
+    <label for="tags">
+        <g:message code="product.tags.label" default="_Tags" />
+     </label>
+    <sel:multiSelectTag id="tags" name="tags" product="${productInstance}"/>
 </div>
 
 <%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'business', 'error')} required">--%>
