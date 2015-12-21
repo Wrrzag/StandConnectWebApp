@@ -15,7 +15,7 @@
 		<g:message code="business.description.label" default="Description" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="description" required="" value="${businessInstance?.description}"/>
+	<g:textArea name="description" required="" value="${businessInstance?.description}"/>
 
 </div>
 

@@ -13,7 +13,6 @@ class SelectorTagLib {
 	
 	def businesses = { attrs ->
 		def currentUser = springSecurityService.getCurrentUser()
-		springSecurityService.getCurrentUser()
 		
 		out << g.select(id: "business", name: "business.id", from: currentUser?.businesses, optionKey: "id", required: "", value: attrs?.business?.id)
 	}

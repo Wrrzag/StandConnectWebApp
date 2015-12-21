@@ -49,7 +49,7 @@
 							</g:if>
 						</td>
 					
-						<td><g:link action="show" id="${businessInstance.id}">${fieldValue(bean: businessInstance, field: "name")}</g:link></td>
+						<td><g:link controller="business" action="show" id="${businessInstance.id}">${fieldValue(bean: businessInstance, field: "name")}</g:link></td>
 						
 						<td>${fieldValue(bean: businessInstance, field: "description")}</td>
 						
