@@ -6,7 +6,10 @@ import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
+import com.standconnect.domain.Beacon
+import com.standconnect.domain.Business
 import com.standconnect.domain.Event
+import com.standconnect.domain.Stand
 
 @Transactional(readOnly = true)
 class EventController {
@@ -138,6 +141,32 @@ class EventController {
             '*'{ render status: NO_CONTENT }
         }
     }
+	
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
+	def enroll(Event eventInstance) {
+		respond eventInstance
+	}
+	
+	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
+	def inscription() { println params
+		def event = Event.get(Long.parseLong(params.eventId, 10))
+		def business = Business.get(Long.parseLong(params.business.id, 10))
+		def beacon = Beacon.get(Long.parseLong(params.beacon, 10))
+		
+		if(event.standNumber < event.stands.size()) {
+			def stand = new Stand(params)
+			stand.event = event
+			stand.save()
+			
+			def eventBusiness = relationshipService.newEventBusiness(event, business)
+			def standBeaconBusiness = relationshipService.newStandBeaconBusiness(stand, beacon, business)
+		}
+		else {
+			flash.message "event is full"
+			redirect action: 'index'
+		}
+		
+	}
 	
 	def getEventImage() {
 		def event = Event.get(Long.parseLong(params.id, 10))

@@ -102,6 +102,10 @@ class RelationshipService {
 		return products.flatten()
 	}
 	
+	def getProducts(Business business, Event event) {
+		throw new UnsupportedOperationException()
+	}
+	
 	def getEvents(Business business) {
 		return EventBusiness.findAllByBusiness(business)*.event
 	}

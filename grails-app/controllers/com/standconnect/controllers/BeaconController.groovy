@@ -3,10 +3,12 @@ package com.standconnect.controllers
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 import com.standconnect.domain.Beacon
+import com.standconnect.domain.Business
 
 @Transactional(readOnly = true)
 class BeaconController {
@@ -14,6 +16,7 @@ class BeaconController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 	def springSecurityService
+	def relationshipService
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -109,6 +112,22 @@ class BeaconController {
         }
     }
 
+	def getByBusiness() {
+		if(!params.businessId) {render [] as JSON; return}
+		
+		def business = Business.get(Long.parseLong(params.businessId, 10))
+		
+		if(business) {
+			def beacons = relationshipService.getBeacons(business).flatten()
+			println "beacons: $beacons"
+			render beacons as JSON
+		}
+		else {
+			log.debug("Business ${params.businessId} not found")
+			render [] as JSON
+		}
+	}
+	
     protected void notFound() {
         request.withFormat {
             form multipartForm {
