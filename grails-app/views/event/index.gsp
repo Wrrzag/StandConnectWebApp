@@ -62,7 +62,7 @@
 						
 							<td>${fieldValue(bean: eventInstance, field: "organizer")}</td>
 							
-							<td><g:link controller="event" action="enroll"  id="${eventInstance.id}">Enroll</g:link></td>
+							<td><g:link controller="event" action="enroll"  id="${eventInstance.id}"><g:message code="event.enroll.label" default="_Enrol" /></g:link></td>
 						</tr>
 					</g:each>
 				</tbody>

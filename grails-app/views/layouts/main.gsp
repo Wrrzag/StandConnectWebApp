@@ -17,19 +17,23 @@
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
-		<locale:list />
-        <sec:ifLoggedIn>
-            <div class="header-login">
-                <g:message code="logged.message" args="[sec.loggedInUserInfo(field: 'username')]" />.
-                <g:link method="POST" controller="Logout"><g:message code="logout.message"/></g:link>
-            </div>
-        </sec:ifLoggedIn>
-        <sec:ifNotLoggedIn>
-            <div class="header-login">
-                <a href="${createLink(uri: '/login')}"><g:message code="login.label"/></a>
-            </div>
-        </sec:ifNotLoggedIn>
+		<div class="topbar">
+			<locale:list />
+		
+	        <sec:ifLoggedIn>
+	            <div class="header-login">
+	                <g:message code="logged.message" args="[sec.loggedInUserInfo(field: 'username')]" />.
+	                <g:link method="POST" controller="Logout"><g:message code="logout.message"/></g:link>
+	            </div>
+	        </sec:ifLoggedIn>
+	        <sec:ifNotLoggedIn>
+	            <div class="header-login">
+	                <a href="${createLink(uri: '/login')}"><g:message code="login.label"/></a>
+	            </div>
+	        </sec:ifNotLoggedIn>
+        </div>
+        
+        <div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
         
         <sec:ifAnyGranted roles="ROLE_BUSINESSUSER">
         	<div class="nav" role="navigation">

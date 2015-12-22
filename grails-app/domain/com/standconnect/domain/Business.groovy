@@ -29,7 +29,7 @@ class Business {
 	def getBasicInfo() {
 		return [
 			'id' : this.id, 'name' : this.name, 'description' : this.description, 
-			'standNumber' : this.standNumber, 'image' : this.image, 
+			'image' : this.image, 
 			'contact' : this.contact, 'phone' : this.phone, 'address' : this.address
 		]
 	}

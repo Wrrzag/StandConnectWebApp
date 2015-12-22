@@ -35,7 +35,7 @@
                     
                         <g:sortableColumn property="endDate" title="${message(code: 'event.endDate.label', default: 'End Date')}" />
                         
-						<th><g:message code="event.organizer.label" default="Organizer" /></th>
+						<th><g:message code="event.organizer.label" default="_Organizer" /></th>
 					
 					</tr>
 				</thead>

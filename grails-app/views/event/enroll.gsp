@@ -3,7 +3,7 @@
     <head>
         <meta name="layout" content="main">
         <g:set var="entityName" value="${message(code: 'event.label', default: 'Event')}" />
-        <title><g:message code="event.enroll.label" args="[entityName]" default="_Enroll"/></title>
+        <title><g:message code="event.enroll.label" args="[entityName]" default="_Enrol"/></title>
         
         <script type="text/javascript">
 	        $(document).ready(function() {

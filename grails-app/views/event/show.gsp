@@ -79,7 +79,7 @@
                 
                 <g:if test="${businessInstance?.standNumber}">
 				<li class="fieldcontain">
-					<span id="standNumber-label" class="property-label"><g:message code="business.standNumber.label" default="Stand Number" /></span>
+					<span id="standNumber-label" class="property-label"><g:message code="event.standNumber.label" default="Stand Number" /></span>
 					
 						<span class="property-value" aria-labelledby="standNumber-label"><g:fieldValue bean="${businessInstance}" field="standNumber"/></span>
 					
@@ -111,7 +111,7 @@
                 
 				<g:if test="${eventInstance?.eventBusiness}">
 				<li class="fieldcontain">
-					<span id="eventBusiness-label" class="property-label"><g:message code="event.eventBusiness.label" default="Businesses" /></span>
+					<span id="eventBusiness-label" class="property-label"><g:message code="event.businesses.label" default="_Businesses" /></span>
 					
 					<g:each in="${eventInstance.eventBusiness}" var="e">
 						<span class="property-value" aria-labelledby="eventBusiness-label"><g:link controller="eventBusiness" action="show" id="${e.id}">${e?.business?.name}</g:link></span>

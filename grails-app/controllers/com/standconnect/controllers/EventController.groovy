@@ -153,7 +153,7 @@ class EventController {
 		def business = Business.get(Long.parseLong(params.business.id, 10))
 		def beacon = Beacon.get(Long.parseLong(params.beacon, 10))
 		
-		if(event.standNumber < event.stands.size()) {
+		if(event.standNumber >= event.stands.size()) {
 			def stand = new Stand(params)
 			stand.event = event
 			stand.save()
@@ -162,10 +162,12 @@ class EventController {
 			def standBeaconBusiness = relationshipService.newStandBeaconBusiness(stand, beacon, business)
 		}
 		else {
-			flash.message "event is full"
+			flash.message = "event is full"
 			redirect action: 'index'
+			return
 		}
 		
+		redirect action:'businessEvents'
 	}
 	
 	def getEventImage() {
