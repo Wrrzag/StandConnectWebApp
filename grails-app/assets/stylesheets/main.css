@@ -594,3 +594,20 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+
+.topbar {
+	width: 100%;
+	height: 25px;
+}
+.topbar > ul li {
+	 display: inline;
+	 list-style-type: none;
+	 padding: 0 .5em 0 .5em;
+	 float:left;
+}
+
+.topbar > .header-login {
+	float: right;
+	padding: 0 0.5em 0 0;
+}
