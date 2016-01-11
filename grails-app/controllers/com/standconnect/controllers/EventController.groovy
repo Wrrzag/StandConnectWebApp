@@ -15,6 +15,12 @@ import com.standconnect.domain.Stand
 class EventController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
+	
+	def afterInterceptor = { model, modelAndView ->
+		model.controller = "event"
+		model.view = modelAndView?.viewName
+	}
+	
 	def springSecurityService
 	def relationshipService
 

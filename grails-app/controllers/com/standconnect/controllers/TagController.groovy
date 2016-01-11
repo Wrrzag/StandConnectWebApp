@@ -12,6 +12,11 @@ import com.standconnect.domain.Tag
 class TagController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	
+	def afterInterceptor = { model, modelAndView ->
+		model.controller = "tag"
+		model.view = modelAndView.viewName
+	}
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

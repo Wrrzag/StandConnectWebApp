@@ -12,6 +12,11 @@ import com.standconnect.domain.Visitor
 class VisitorController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	
+	def afterInterceptor = { model, modelAndView ->
+		model.controller = "visitor"
+		model.view = modelAndView.viewName
+	}
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

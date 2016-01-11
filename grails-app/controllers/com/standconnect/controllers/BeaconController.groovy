@@ -15,6 +15,11 @@ class BeaconController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def afterInterceptor = { model, modelAndView ->
+		model.controller = "beacon"
+		model.view = modelAndView?.viewName
+	}
+	
 	def springSecurityService
 	def relationshipService
 	

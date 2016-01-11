@@ -9,23 +9,22 @@
 	</head>
 	<body>
 		<a href="#list-beacon" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
-				    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				</sec:ifAnyGranted>
-			</ul>
-		</div>
-		<div id="list-beacon" class="content scaffold-list" role="main">
+<%--		<div class="nav" role="navigation">--%>
+<%--			<ul>--%>
+<%--				<li><a class="home btn btn-default" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
+<%--				<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>--%>
+<%--				    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--%>
+<%--				</sec:ifAnyGranted>--%>
+<%--			</ul>--%>
+<%--		</div>--%>
+		<div id="list-beacon" class="content scaffold-list col-lg-12" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
-			<thead>
+			<table class="table table-bordered striped">
+			    <thead>
 					<tr>
-					
 						<g:sortableColumn property="mac" title="${message(code: 'beacon.mac.label', default: 'Mac')}" />
 					
 						<g:sortableColumn property="name" title="${message(code: 'beacon.name.label', default: 'Name')}" />
@@ -50,5 +49,14 @@
 				<g:paginate total="${beaconInstanceCount ?: 0}" />
 			</div>
 		</div>
+		
+		<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
+			<div class="nav" role="navigation">
+	            <ul>
+<%--                <li><a class="home btn btn-default" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
+                    <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+	            </ul>
+	        </div>
+        </sec:ifAnyGranted>
 	</body>
 </html>

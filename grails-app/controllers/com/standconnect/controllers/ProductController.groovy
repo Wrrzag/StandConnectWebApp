@@ -13,6 +13,11 @@ import com.standconnect.domain.Tag
 class ProductController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
+	
+	def afterInterceptor = { model, modelAndView ->
+		model.controller = "product"
+		model.view = modelAndView.viewName
+	}
 
 	def relationshipService
 	

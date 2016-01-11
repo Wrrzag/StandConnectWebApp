@@ -9,20 +9,20 @@
 	</head>
 	<body>
 		<a href="#list-event" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-			<div class="nav" role="navigation">
-				<ul>
-					<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-					<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>
-						<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-					</sec:ifAnyGranted>
-				</ul>
-			</div>
-		<div id="list-event" class="content scaffold-list" role="main">
+<%--			<div class="nav" role="navigation">--%>
+<%--				<ul>--%>
+<%--					<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
+<%--					<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>--%>
+<%--						<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--%>
+<%--					</sec:ifAnyGranted>--%>
+<%--				</ul>--%>
+<%--			</div>--%>
+		<div id="list-event" class="content scaffold-list col-lg-12" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="table table-bordered striped">
 			<thead>
 					<tr>
 					   <g:sortableColumn property="image" title="${message(code: 'event.image.label', default: 'Image')}" />
@@ -37,7 +37,7 @@
                         
 						<th><g:message code="event.organizer.label" default="Organizer" /></th>
 						
-						<th><!-- LIST --></th>
+						<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'><th><!-- LIST --></th></sec:ifAnyGranted>
 					
 					</tr>
 				</thead>
@@ -62,7 +62,14 @@
 						
 							<td>${fieldValue(bean: eventInstance, field: "organizer")}</td>
 							
-							<td><g:link controller="event" action="enroll"  id="${eventInstance.id}"><g:message code="event.enroll.label" default="_Enrol" /></g:link></td>
+							<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
+							     <td>
+							         <g:link class="btn btn-success btn-enrol" controller="event" action="enroll"  id="${eventInstance.id}">
+							             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							             <g:message code="event.enroll.label" default="_Enrol" />
+							         </g:link>
+						         </td>
+						    </sec:ifAnyGranted>
 						</tr>
 					</g:each>
 				</tbody>
@@ -71,5 +78,14 @@
 				<g:paginate total="${eventInstanceCount ?: 0}" />
 			</div>
 		</div>
-	</body>
+		
+		 <sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>
+			<div class="nav" role="navigation">
+		        <ul>
+<%--		            <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
+	                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+		        </ul>
+		    </div>
+	       </sec:ifAnyGranted>
+		</body>
 </html>

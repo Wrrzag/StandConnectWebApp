@@ -11,11 +11,11 @@ h1, h2, h3, h4, h5, h6 {
 /* BASE LAYOUT */
 
 html {
-	background-color: #ddd;
-	background-image: -moz-linear-gradient(center top, #aaa, #ddd);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
-	background-image: linear-gradient(top, #aaa, #ddd);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
+	background-color: #C0D1DB/*#ddd*/;
+	background-image: -moz-linear-gradient(center top, /*#aaa*/#BFDFF3, /*#ddd*/#BFD7E6);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #BFDFF3), color-stop(1, #BFD7E6));
+	background-image: linear-gradient(top, #BFDFF3, #BFD7E6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#BFDFF3', EndColorStr = '#BFD7E6');
 	background-repeat: no-repeat;
 	height: 100%;
 	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
@@ -40,15 +40,16 @@ body {
 	background: #ffffff;
 	color: #333333;
 	margin: 0 auto;
-	max-width: 960px;
+	max-width: /*960*/1180px;
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
-	   -moz-box-shadow: 0 0 0.3em #255b17;
-	-webkit-box-shadow: 0 0 0.3em #255b17;
-	        box-shadow: 0 0 0.3em #255b17;
+	   -moz-box-shadow: 0 0 0.3em /*#255b17*/#224F6C;
+	-webkit-box-shadow: 0 0 0.3em #224F6C;
+	        box-shadow: 0 0 0.3em #224F6C;
 }
 
 #grailsLogo {
-	background-color: #abbf78;
+	background-color: #77B6EC;
+	height: 160px;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */
@@ -65,7 +66,7 @@ body {
 }
 
 a:link, a:visited, a:hover {
-	color: #48802c;
+	color: #3D8FD5;
 }
 
 a:hover, a:active {
@@ -73,7 +74,7 @@ a:hover, a:active {
 }
 
 h1 {
-	color: #48802c;
+	color: #3D8FD5;
 	font-weight: normal;
 	font-size: 1.25em;
 	margin: 0.8em 0 0.3em 0;
@@ -91,7 +92,7 @@ img {
 
 #grailsLogo a {
 	display: inline-block;
-	margin: 1em;
+	margin: /*1.25*/4.25em;
 }
 
 .content {
@@ -108,11 +109,11 @@ img {
 }
 
 .footer {
-	background: #abbf78;
+	background: #77B6EC;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
-	margin-top: 1.5em;
+	/*margin-top: 1.5em;*/
 	padding: 1em;
 	min-height: 1em;
 }
@@ -283,7 +284,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .required-indicator {
-	color: #48802C;
+	color: #3D8FD5;
 	display: inline-block;
 	font-weight: bold;
 	margin-left: 0.3em;
@@ -476,7 +477,7 @@ th.desc a {
 }
 
 th:hover, tr:hover {
-	background: #E1F2B6;
+	background: #A8CCEC;
 }
 
 /* PAGINATION */
@@ -486,10 +487,10 @@ th:hover, tr:hover {
 	margin: 0;
 	padding: 0.3em 0.2em;
 	text-align: center;
-	   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
+	/*   -moz-box-shadow: 0 0 3px 1px #AAAAAA;
 	-webkit-box-shadow: 0 0 3px 1px #AAAAAA;
 	        box-shadow: 0 0 3px 1px #AAAAAA;
-	background-color: #EFEFEF;
+	background-color: #EFEFEF;*/
 }
 
 .pagination a,
@@ -610,4 +611,67 @@ a.skip {
 .topbar > .header-login {
 	float: right;
 	padding: 0 0.5em 0 0;
+}
+
+.main-nav {
+	background-color: rgb(27, 75, 117);
+	height: 50px;
+}
+
+.main-nav ul {
+	padding-top: 5px;
+}
+
+.main-nav a {
+	color: #DCF5FF;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 0;
+}
+
+.main-nav a.list {
+	text-indent: 0;
+	font-size: 14pt;
+	background-image: none;
+}
+
+.main-nav a:focus, .main-nav a:hover {
+	background-color: rgb(27, 75, 117);
+    color: #77B6EC;
+    outline: none;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.main-nav-selected {
+    background-color: #3C7FBA!important;	
+}
+
+.buser-nav li {
+    /*width: 16.6%;*/
+    margin-right: 0;
+}
+
+.orguser-nav ul {
+	margin: 0px 0px 0px 27%;
+}
+
+.orguser-nav li {
+	width: 22%;
+}
+
+#locales li a {
+	text-transform: capitalize;
+}
+
+.main-title {
+	display: inline-block;
+	float: right;
+	font-size: 50pt;
+	margin: 3.5% 5% 0px 0px;
+	font-weight: bold;
+}
+
+.btn-enrol {
+	color: rgb(241, 255, 237)!important;
 }

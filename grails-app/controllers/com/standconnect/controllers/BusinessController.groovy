@@ -13,6 +13,11 @@ class BusinessController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
+	def afterInterceptor = { model, modelAndView ->
+		model.controller = "business"
+		model.view = modelAndView.viewName
+	}
+	
 	def springSecurityService
 	
 	def userBusinesses(Integer max) {

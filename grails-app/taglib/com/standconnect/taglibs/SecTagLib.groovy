@@ -32,6 +32,12 @@ class SecTagLib {
 		}
 	}
 	
+	def loggedUserMsg = { attrs ->
+		def currentUser = springSecurityService.getCurrentUser()
+		
+		out << g.message(code: "logged.message", args: [currentUser.name]) + "."
+	}
+	
 	private getStandOwner(standInstance) {
 		relationshipService.getBusinesses(standInstance)*.businessUser
 	}

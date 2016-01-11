@@ -17,12 +17,12 @@
 			    </sec:ifAnyGranted>
 			</ul>
 		</div>
-		<div id="list-visitor" class="content scaffold-list" role="main">
+		<div id="list-visitor" class="content scaffold-list col-lg-12" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table class="table table-bordered striped">
 			<thead>
 					<tr>
 					

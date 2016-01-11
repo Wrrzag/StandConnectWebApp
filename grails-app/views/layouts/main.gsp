@@ -22,7 +22,8 @@
 		
 	        <sec:ifLoggedIn>
 	            <div class="header-login">
-	                <g:message code="logged.message" args="[sec.loggedInUserInfo(field: 'username')]" />.
+<%--	                <g:message code="logged.message" args="[sec.loggedInUserInfo(field: 'name')]" />.--%>
+                    <auth:loggedUserMsg />
 	                <g:link method="POST" controller="Logout"><g:message code="logout.message"/></g:link>
 	            </div>
 	        </sec:ifLoggedIn>
@@ -33,27 +34,30 @@
 	        </sec:ifNotLoggedIn>
         </div>
         
-        <div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
-        
+        <div id="grailsLogo" role="banner">
+            <g:link controller="secUser" action="home"><asset:image src="grails_logo.png" alt="Grails"/></g:link>
+            <div class="main-title">Stand Connect</div>
+        </div>
+       
         <sec:ifAnyGranted roles="ROLE_BUSINESSUSER">
-        	<div class="nav" role="navigation">
+        	<div class="nav main-nav buser-nav" role="navigation">
 				<ul>
-					<li><g:link class="list" controller="business" action="userBusinesses"><g:message code="default.my.businesses.label" default="_My Businesses"/></g:link></li>
-					<li><g:link class="list" controller="event" action="businessEvents"><g:message code="default.attending.events.label" default="_Attending Events" /></g:link></li>
-					<li><g:link class="list" controller="event" action="index"><g:message code="default.event.plural.label" default="_Events" /></g:link></li>
-					<li><g:link class="list" controller="product" action="index"><g:message code="default.product.plural.label" default="_Products" /></g:link></li>
-					<li><g:link class="list" controller="stand" action="index"><g:message code="default.stand.plural.label" default="_Stands" /></g:link></li>
-					<li><g:link class="list" controller="beacon" action="index"><g:message code="default.beacon.plural.label" default="_Beacons" /></g:link></li>
+					<li style="width: 21.6%;"><g:link class="list ${controller == 'business' ? 'main-nav-selected' : ''}" controller="business" action="userBusinesses"><g:message code="default.my.businesses.label" default="_My Businesses"/></g:link></li>
+					<li style="width: 21.6%;"><g:link class="list ${controller == 'event' && view == 'businessEvents' ? 'main-nav-selected' : ''}" controller="event" action="businessEvents"><g:message code="default.attending.events.label" default="_Attending Events" /></g:link></li>
+					<li style="width: 14.6%;"><g:link class="list ${controller == 'event' && view != 'businessEvents' ? 'main-nav-selected' : ''}" controller="event" action="index"><g:message code="default.event.plural.label" default="_Events" /></g:link></li>
+					<li style="width: 14.6%;"><g:link class="list ${controller == 'product' ? 'main-nav-selected' : ''}" controller="product" action="index"><g:message code="default.product.plural.label" default="_Products" /></g:link></li>
+					<li style="width: 13.6%;"><g:link class="list ${controller == 'stand' ? 'main-nav-selected' : ''}" controller="stand" action="index"><g:message code="default.stand.plural.label" default="_Stands" /></g:link></li>
+					<li style="width: 13.6%;"><g:link class="list ${controller == 'beacon' ? 'main-nav-selected' : ''}" controller="beacon" action="index"><g:message code="default.beacon.plural.label" default="_Beacons" /></g:link></li>
 				</ul>
 			</div>
         </sec:ifAnyGranted>
         <sec:ifAnyGranted roles="ROLE_ORGANIZER">
-        	<div class="nav" role="navigation">
+        	<div class="nav main-nav orguser-nav" role="navigation">
 				<ul>
-					<li><g:link class="list" controller="event" action="userEvents"><g:message code="default.my.events.label" default="_My Events" /></g:link></li>
+					<li><g:link class="list ${controller == 'event' ? 'main-nav-selected' : ''}" controller="event" action="userEvents"><g:message code="default.my.events.label" default="_My Events" /></g:link></li>
 <%--					<li><g:link class="list" controller="event" action="index"><g:message code="default.event.plural.label" default="_Events" /></g:link></li>--%>
-					<li><g:link class="list" controller="product" action="index"><g:message code="default.product.plural.label" default="_Products" /></g:link></li>
-					<li><g:link class="list" controller="stand" action="index"><g:message code="default.stand.plural.label" default="_Stands" /></g:link></li>
+					<li><g:link class="list ${controller == 'product' ? 'main-nav-selected' : ''}" controller="product" action="index"><g:message code="default.product.plural.label" default="_Products" /></g:link></li>
+					<li><g:link class="list ${controller == 'stand' ? 'main-nav-selected' : ''}" controller="stand" action="index"><g:message code="default.stand.plural.label" default="_Stands" /></g:link></li>
 				</ul>
 			</div>
         </sec:ifAnyGranted>
