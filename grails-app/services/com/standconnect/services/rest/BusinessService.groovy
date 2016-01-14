@@ -60,7 +60,7 @@ class BusinessService {
 		businessReturn["id"] = business.id
 		businessReturn["name"] = business.name
 		businessReturn["description"] = business.description
-		businessReturn["standNumber"] = business.standNumber
+		//businessReturn["standNumber"] = business.standNumber
 		businessReturn["image"] = business.image
 		businessReturn["contact"] = business.contact
 		businessReturn["phone"] = business.phone
