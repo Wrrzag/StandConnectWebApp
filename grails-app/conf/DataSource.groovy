@@ -39,18 +39,8 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "create"
-			username = "adminahj3tfc"
-			password = "pJNJtFLvw2pH"
-			url = "postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT"
-			dialect = "org.hibernate.dialect.PostgreSQLDialect"
-			driverClassName = "org.postgresql.Driver"
-			
-//			driverClassName = "org.postgresql.Driver"
-//			uri = new URI(System.getenv('OPENSHIFT_POSTGRESQL_DB_URL'))
-//			url = "jdbc:postgresql://" + uri.host + uri.path + "/" + System.getenv('OPENSHIFT_APP_NAME')
-//			username = System.getenv('OPENSHIFT_POSTGRESQL_DB_USERNAME')
-//			password = System.getenv('OPENSHIFT_POSTGRESQL_DB_PASSWORD')
+            dbCreate = "update"
+			jndiName = "java:/psqlDS"
         }
     }
 }
