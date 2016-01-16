@@ -12,7 +12,8 @@ class TagService {
 	
 	def list() {
 		return Tag.list().collect() {
-			getTagInfo(it)
+			//getTagInfo(it)
+			['id': it.id, 'name': it.name]
 		}
 	}
 	
@@ -23,7 +24,7 @@ class TagService {
 			return list()
 		}
 		
-		return relationshipService.getTags(event).collect() { getTagInfo(it) }
+		return relationshipService.getTags(event).collect() { /*getTagInfo(it)*/['id': it.id, 'name': it.name] }
     }
 	
 	def get(id) {
@@ -52,7 +53,7 @@ class TagService {
 		
 		def businesses = relationshipService.getBusinesses(tag).collect() { it.getBasicInfo() }
 		def products = relationshipService.getProducts(tag).collect() { it.getBasicInfo() }
-		def visitors = relationshipService.getVisitors(tag).collect() { it.getBasicInfo() }
+//		def visitors = relationshipService.getVisitors(tag).collect() { it.getBasicInfo() }
 		def events = relationshipService.getEvents(tag).collect() { it.getBasicInfo() }
 		
 		def tagReturn = [:]
@@ -60,7 +61,7 @@ class TagService {
 		tagReturn["name"] = tag.name
 		tagReturn["business"] = businesses
 		tagReturn["products"] = products
-		tagReturn["visitors"] = visitors
+//		tagReturn["visitors"] = visitors
 		tagReturn["events"] = events
 		
 		return tagReturn

@@ -1,6 +1,7 @@
 package com.standconnect.services.rest
 
 import grails.transaction.Transactional
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator
 
 import com.standconnect.domain.Beacon
 import com.standconnect.domain.Event
@@ -9,6 +10,7 @@ import com.standconnect.domain.Stand
 @Transactional
 class StandService {
 
+	LinkGenerator grailsLinkGenerator
 	def relationshipService
 	
     def list() {
@@ -56,6 +58,7 @@ class StandService {
 		standReturn["id"] = stand.id
 		standReturn["name"] = stand.name
 		standReturn["number"] = stand.number
+		standReturn["image"] = stand.image ? grailsLinkGenerator.link(controller: 'stand', action: 'getStandImage', id: "${stand.id}", absolute: true) : "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
 		standReturn["businesses"] = businesses
 		standReturn["beacons"] = beacons
 		standReturn["event"] = stand.event.getBasicInfo()

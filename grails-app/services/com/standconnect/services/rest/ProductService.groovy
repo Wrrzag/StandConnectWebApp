@@ -1,5 +1,7 @@
 package com.standconnect.services.rest
 
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator;
+
 import grails.transaction.Transactional
 
 import com.standconnect.domain.Event
@@ -8,6 +10,7 @@ import com.standconnect.domain.Product
 @Transactional
 class ProductService {
 
+	LinkGenerator grailsLinkGenerator
     def relationshipService
 	
 	def list() {
@@ -58,7 +61,7 @@ class ProductService {
 		productReturn["name"] = product.name
 		productReturn["description"] = product.description
 		productReturn["price"] = product.price
-		productReturn["image"] = product.image
+		productReturn["image"] = product.image ? grailsLinkGenerator.link(controller: 'product', action: 'getProductImage', id: "${product.id}", absolute: true) : "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
 		productReturn["business"] = business
 		productReturn["tags"] = tags
 		

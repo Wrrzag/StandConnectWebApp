@@ -2,6 +2,8 @@ package com.standconnect.services.rest
 
 import java.util.Date;
 
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator;
+
 import grails.transaction.Transactional
 
 import com.standconnect.domain.Event
@@ -10,6 +12,7 @@ import com.standconnect.security.SecUser.Gender;
 @Transactional
 class EventService {
 
+	LinkGenerator grailsLinkGenerator
 	def relationshipService 
 	
     def list(params) {
@@ -42,7 +45,7 @@ class EventService {
 		eventReturn["endDate"] = event.endDate
 		eventReturn["schedule"] = event.schedule
 		eventReturn["location"] = event.location
-		eventReturn["image"] = event.image
+		eventReturn["image"] = event.image ? grailsLinkGenerator.link(controller: 'event', action: 'getEventImage', id: "${event.id}", absolute: true) : "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
 		eventReturn["organizer"] = event.organizer.getBasicInfo()
 		eventReturn["stands"] = stands
 		eventReturn["businesses"] = businesses

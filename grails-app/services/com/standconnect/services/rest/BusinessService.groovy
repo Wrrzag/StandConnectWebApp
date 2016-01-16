@@ -5,10 +5,12 @@ import grails.transaction.Transactional
 import com.standconnect.domain.Beacon
 import com.standconnect.domain.Business
 import com.standconnect.domain.Event
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator
 
 @Transactional
 class BusinessService {
 
+	LinkGenerator grailsLinkGenerator
 	def relationshipService
 	
 	def list() {
@@ -60,8 +62,8 @@ class BusinessService {
 		businessReturn["id"] = business.id
 		businessReturn["name"] = business.name
 		businessReturn["description"] = business.description
-		businessReturn["standNumber"] = business.standNumber
-		businessReturn["image"] = business.image
+//		businessReturn["standNumber"] = business.standNumber
+		businessReturn["image"] = business.image ? grailsLinkGenerator.link(controller: 'business', action: 'getBusinessImage', id: "${business.id}", absolute: true) : "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
 		businessReturn["contact"] = business.contact
 		businessReturn["phone"] = business.phone
 		businessReturn["address"] = business.address

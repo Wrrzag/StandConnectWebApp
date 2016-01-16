@@ -22,7 +22,7 @@ class RelationshipService {
 	//------------  GETTERS  ------------
 	//-----------------------------------
 	def getBusinesses(Tag tag) {
-		return BusinessTagProduct.findAllByTag(tag)*.business
+		return BusinessTagProduct.findAllByTag(tag)*.business?.unique(false)
 	}
 	
 	def getBusinesses(Product product) {
@@ -82,7 +82,7 @@ class RelationshipService {
 	}
 	
 	def getVisitorEvents(Tag tag) {
-		return VisitorEventTag.findAllByTag(tag)*.visitorEvent
+		return VisitorEventTag.findAllByTag(tag)*.visitorEvent?.unique(false)
 	}
 	
 	def getProducts(Business business) {
@@ -90,7 +90,7 @@ class RelationshipService {
 	}
 	
 	def getProducts(Tag tag) {
-		return BusinessTagProduct.findAllByTag(tag)*.product
+		return BusinessTagProduct.findAllByTag(tag)*.product?.unique(false)
 	}
 	
 	def getProducts(Event event) {
@@ -119,7 +119,7 @@ class RelationshipService {
 	}
 	
 	def getEvents(Tag tag) {
-		return getVisitorEvents(tag).event.unique(false)
+		return getVisitorEvents(tag).event?.unique(false)
 	}
 	
 	def getStands(Beacon beacon) {
@@ -139,7 +139,7 @@ class RelationshipService {
 	}
 	
 	def getVisitors(Tag tag) {
-		return getVisitorEvents(tag).visitor.unique(false)
+		return getVisitorEvents(tag).visitor?.unique(false)
 	}
 	
 	def getBeacons(Stand stand) {
