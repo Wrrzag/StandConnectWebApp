@@ -119,7 +119,10 @@ class BeaconController {
     }
 
 	def getByBusiness() {
-		if(!params.businessId) {render [] as JSON; return}
+		if(!params.businessId) {
+			log.debug("No ID received")
+			render [] as JSON; return
+		}
 		
 		def business = Business.get(Long.parseLong(params.businessId, 10))
 		

@@ -147,7 +147,8 @@ class RelationshipService {
 	}
 	
 	def getBeacons(Business business) {
-		StandBeaconBusiness.findAllByBusiness(business)*.beacon
+//		StandBeaconBusiness.findAllByBusiness(business)*.beacon
+		business.beacon
 	}
 	
 	def getBeacons(Event event) {

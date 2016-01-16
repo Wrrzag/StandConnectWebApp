@@ -9,21 +9,22 @@ import grails.transaction.Transactional
 import com.standconnect.domain.Stand
 
 @Transactional(readOnly = true)
-@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class StandController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 	
 	def afterInterceptor = { model, modelAndView ->
 		model.controller = "stand"
 		model.view = modelAndView?.viewName
 	}
 
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Stand.list(params), model:[standInstanceCount: Stand.count()]
     }
 
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def show(Stand standInstance) {
         respond standInstance
     }
@@ -64,7 +65,7 @@ class StandController {
 
     @Transactional
 	@Secured(["ROLE_ADMIN", "ROLE_BUSINESSUSER"])
-    def update(Stand standInstance) {
+    def update(Stand standInstance) {println params
         if (standInstance == null) {
             notFound()
             return
@@ -106,6 +107,18 @@ class StandController {
         }
     }
 
+	def getStandImage() {
+		def stand = Stand.get(Long.parseLong(params.id, 10))
+		
+		if(!stand) {
+			notFound()
+			return
+		}
+		
+		byte[] image = stand.image
+		response.outputStream << image
+	}
+	
     protected void notFound() {
         request.withFormat {
             form multipartForm {

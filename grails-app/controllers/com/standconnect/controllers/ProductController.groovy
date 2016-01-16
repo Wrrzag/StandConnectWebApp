@@ -10,7 +10,6 @@ import com.standconnect.domain.Product
 import com.standconnect.domain.Tag
 
 @Transactional(readOnly = true)
-@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class ProductController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
@@ -22,11 +21,13 @@ class ProductController {
 
 	def relationshipService
 	
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Product.list(params), model:[productInstanceCount: Product.count()]
     }
 
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def show(Product productInstance) {
         respond productInstance
     }

@@ -12,7 +12,6 @@ import com.standconnect.domain.Event
 import com.standconnect.domain.Stand
 
 @Transactional(readOnly = true)
-@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class EventController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
@@ -25,6 +24,7 @@ class EventController {
 	def springSecurityService
 	def relationshipService
 
+	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 	def userEvents(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		respond Event.createCriteria().list(params) {
@@ -37,8 +37,6 @@ class EventController {
 		params.max = Math.min(max ?: 10, 100)
 		def businesses = springSecurityService.getCurrentUser()?.businesses?.eventBusiness?.id.flatten()
 		
-		println businesses*.properties
-		
 		if(businesses){
 			respond Event.createCriteria().list(params) {
 				'in'('id', businesses)
@@ -46,11 +44,13 @@ class EventController {
 		}
 	}
 	
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Event.list(params), model:[eventInstanceCount: Event.count()]
     }
 
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def show(Event eventInstance) {
         respond eventInstance
     }

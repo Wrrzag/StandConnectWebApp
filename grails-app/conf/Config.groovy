@@ -129,6 +129,7 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.standconne
 grails.plugin.springsecurity.authority.className = 'com.standconnect.security.SecRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
+	'/api/**':			['permitAll'],
 	'/index':           ['ROLE_ADMIN'],
 	'/index.gsp':       ['ROLE_ADMIN'],
 	'/assets/**':       ['permitAll'],

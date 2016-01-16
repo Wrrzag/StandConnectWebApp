@@ -12,6 +12,11 @@ class Tag {
     static constraints = {
     }
 	
+	static mapping = {
+		businessTagProduct cascade: 'all-delete-orphan'
+		visitorEventTag cascade: 'all-delete-orphan'
+	}
+	
 	def getBasicInfo() {
 		return [
 			"id" : this.id, "name" : this.name	

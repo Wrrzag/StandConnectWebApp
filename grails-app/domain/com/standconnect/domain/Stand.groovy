@@ -1,8 +1,11 @@
 package com.standconnect.domain
 
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator
+
 import com.standconnect.domain.relationships.StandBeaconBusiness
 
 class Stand {
+	static transient LinkGenerator grailsLinkGenerator
 	def relationshipService
 	
 	String name
@@ -17,13 +20,15 @@ class Stand {
 	}
 	
 	static mapping = {
+		standBeaconBusiness cascade: 'all-delete-orphan'
 		image type: 'image'
 	}
 	
 	def getBasicInfo() {
 		return [
 			"id" : this.id, "name" : this.name, "number" : this.number, 
-			"image" : this.image, "event" : this.event.getBasicInfo()
+			"image" : this.image ? grailsLinkGenerator.link(controller: 'stand', action: 'getStandImage', id: "${this.id}", absolute: true) : "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg", 
+			"event" : this.event.getBasicInfo()
 		]
 	}
 	

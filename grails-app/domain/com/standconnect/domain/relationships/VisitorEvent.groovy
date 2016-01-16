@@ -12,4 +12,8 @@ class VisitorEvent {
 	
     static constraints = {
     }
+	
+	static mapping = {
+		visitorEventTag cascade: 'all-delete-orphan'
+	}
 }

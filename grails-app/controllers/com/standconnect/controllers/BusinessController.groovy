@@ -9,7 +9,6 @@ import grails.transaction.Transactional
 import com.standconnect.domain.Business
 
 @Transactional(readOnly = true)
-@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class BusinessController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
@@ -21,6 +20,7 @@ class BusinessController {
 	
 	def springSecurityService
 	
+	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 	def userBusinesses(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
 		respond Business.createCriteria().list(params) {
@@ -28,11 +28,13 @@ class BusinessController {
 		}
 	}
 	
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Business.list(params), model:[businessInstanceCount: Business.count()]
     }
 
+//	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
     def show(Business businessInstance) {
         respond businessInstance
     }

@@ -1,5 +1,6 @@
 package com.standconnect.controllers.rest
 
+import grails.plugin.springsecurity.annotation.Secured
 
 class EventController {
 

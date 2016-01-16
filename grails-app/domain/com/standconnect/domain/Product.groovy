@@ -1,9 +1,12 @@
 package com.standconnect.domain
 
+import org.codehaus.groovy.grails.web.mapping.LinkGenerator
+
 import com.standconnect.domain.relationships.BusinessTagProduct
 
 class Product {
-
+	static transient LinkGenerator grailsLinkGenerator
+	
 	String name
 	String description
 	String price
@@ -17,13 +20,16 @@ class Product {
     }
 	
 	static mapping = {
+		businessTagProduct cascade: 'all-delete-orphan'
 		image type: 'image'
 	}
 	
 	def getBasicInfo() {
 		return [
 			"id" : this.id, "name" : this.name, "description" : this.description,
-			"price" : this.price, "image" : this.image, "business" : this.business.getBasicInfo()	
+			"price" : this.price, 
+			"image" : this.image ? grailsLinkGenerator.link(controller: 'product', action: 'getProductImage', id: "${this.id}", absolute: true) : "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg",
+			"business" : this.business.getBasicInfo()	
 		]
 	}
 	

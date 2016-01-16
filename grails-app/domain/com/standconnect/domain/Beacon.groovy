@@ -14,6 +14,10 @@ class Beacon {
     static constraints = {
     }
 	
+	static mapping = {
+		standBeaconBusiness cascade: 'all-delete-orphan'
+	}
+	
 	def getBasicInfo() {
 		return [
 			"id" : this.id, "name" : this.name, "mac" : this.mac
