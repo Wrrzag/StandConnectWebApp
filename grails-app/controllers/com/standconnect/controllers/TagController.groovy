@@ -9,13 +9,14 @@ import grails.transaction.Transactional
 import com.standconnect.domain.Tag
 
 @Transactional(readOnly = true)
+@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class TagController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
 	def afterInterceptor = { model, modelAndView ->
 		model.controller = "tag"
-		model.view = modelAndView.viewName
+		model.view = modelAndView?.viewName
 	}
 
     def index(Integer max) {

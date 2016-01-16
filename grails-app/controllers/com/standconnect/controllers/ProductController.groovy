@@ -10,13 +10,14 @@ import com.standconnect.domain.Product
 import com.standconnect.domain.Tag
 
 @Transactional(readOnly = true)
+@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class ProductController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 	
 	def afterInterceptor = { model, modelAndView ->
 		model.controller = "product"
-		model.view = modelAndView.viewName
+		model.view = modelAndView?.viewName
 	}
 
 	def relationshipService

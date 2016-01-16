@@ -11,6 +11,7 @@ import com.standconnect.domain.Beacon
 import com.standconnect.domain.Business
 
 @Transactional(readOnly = true)
+@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class BeaconController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

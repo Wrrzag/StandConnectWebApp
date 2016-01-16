@@ -9,13 +9,14 @@ import grails.transaction.Transactional
 import com.standconnect.domain.Stand
 
 @Transactional(readOnly = true)
+@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class StandController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
 	def afterInterceptor = { model, modelAndView ->
 		model.controller = "stand"
-		model.view = modelAndView.viewName
+		model.view = modelAndView?.viewName
 	}
 
     def index(Integer max) {

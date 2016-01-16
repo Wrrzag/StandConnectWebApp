@@ -12,6 +12,7 @@ import com.standconnect.domain.Event
 import com.standconnect.domain.Stand
 
 @Transactional(readOnly = true)
+@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class EventController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]

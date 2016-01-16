@@ -9,13 +9,14 @@ import grails.transaction.Transactional
 import com.standconnect.domain.Business
 
 @Transactional(readOnly = true)
+@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class BusinessController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
 
 	def afterInterceptor = { model, modelAndView ->
 		model.controller = "business"
-		model.view = modelAndView.viewName
+		model.view = modelAndView?.viewName
 	}
 	
 	def springSecurityService
