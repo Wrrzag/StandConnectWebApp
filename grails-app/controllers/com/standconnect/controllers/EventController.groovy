@@ -35,9 +35,11 @@ class EventController {
 	@Secured(["ROLE_BUSINESSUSER"])
 	def businessEvents(Integer max) {
 		params.max = Math.min(max ?: 10, 100)
-		def businesses = springSecurityService.getCurrentUser()?.businesses?.eventBusiness?.id.flatten()
+		def businesses = springSecurityService.getCurrentUser()?.businesses?.eventBusiness?.event*.id.flatten()
 		
-		if(businesses){
+		if(businesses){ println businesses
+			println "-- $businesses"
+			println ".. ${Event.list()*.id}"
 			respond Event.createCriteria().list(params) {
 				'in'('id', businesses)
 			}
@@ -154,6 +156,7 @@ class EventController {
 		respond eventInstance
 	}
 	
+	@Transactional
 	@Secured(["ROLE_ADMIN","ROLE_BUSINESSUSER"])
 	def inscription() { println params
 		def event = Event.get(Long.parseLong(params.eventId, 10))
@@ -163,7 +166,7 @@ class EventController {
 		if(event.standNumber >= event.stands.size()) {
 			def stand = new Stand(params)
 			stand.event = event
-			stand.save()
+			if(!stand.save()) println "eh capullo"
 			
 			def eventBusiness = relationshipService.newEventBusiness(event, business)
 			def standBeaconBusiness = relationshipService.newStandBeaconBusiness(stand, beacon, business)
