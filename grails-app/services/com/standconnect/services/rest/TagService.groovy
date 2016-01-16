@@ -55,6 +55,7 @@ class TagService {
 		def products = relationshipService.getProducts(tag).collect() { it.getBasicInfo() }
 //		def visitors = relationshipService.getVisitors(tag).collect() { it.getBasicInfo() }
 		def events = relationshipService.getEvents(tag).collect() { it.getBasicInfo() }
+//		def beacons = relationshipService.getBeacons(tag).collect() { it.getBasicInfo() }
 		
 		def tagReturn = [:]
 		tagReturn["id"] = tag.id
@@ -62,6 +63,7 @@ class TagService {
 		tagReturn["business"] = businesses
 		tagReturn["products"] = products
 //		tagReturn["visitors"] = visitors
+//		tagReturn["beacons"] = beacons
 		tagReturn["events"] = events
 		
 		return tagReturn

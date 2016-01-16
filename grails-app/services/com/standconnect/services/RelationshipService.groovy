@@ -164,6 +164,10 @@ class RelationshipService {
 		return beacons
 	}
 	
+	def getBeacons(Tag tag) {
+		return getBusinesses(tag).beacon?.flatten()?.unique(false)
+	}
+	
 	
 	//-----------------------------------
 	//------------  CREATE  -------------

@@ -9,7 +9,6 @@ import grails.transaction.Transactional
 import com.standconnect.domain.Tag
 
 @Transactional(readOnly = true)
-@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 class TagController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
