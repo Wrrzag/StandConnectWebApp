@@ -48,11 +48,11 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
-//		"/" {
-//			controller = "event"
-//			action = "index"
-//		 }
+//        "/"(view:"/index")
+		"/" {
+			controller = "secUser"
+			action = "home"
+		 }
         "500"(view:'/error')
 	}
 }

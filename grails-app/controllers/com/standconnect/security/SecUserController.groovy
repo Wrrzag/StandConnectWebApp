@@ -3,6 +3,7 @@ package com.standconnect.security
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -12,20 +13,24 @@ class SecUserController {
 
 	def springSecurityService
 	
+	@Secured(["ROLE_ADMIN"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond SecUser.list(params), model:[secUserInstanceCount: SecUser.count()]
     }
 
+	@Secured(["ROLE_ADMIN"])
     def show(SecUser secUserInstance) {
         respond secUserInstance
     }
 
+	@Secured(["ROLE_ADMIN"])
     def create() {
         respond new SecUser(params)
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def save(SecUser secUserInstance) {
         if (secUserInstance == null) {
             notFound()
@@ -48,11 +53,13 @@ class SecUserController {
         }
     }
 
+	@Secured(["ROLE_ADMIN"])
     def edit(SecUser secUserInstance) {
         respond secUserInstance
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def update(SecUser secUserInstance) {
         if (secUserInstance == null) {
             notFound()
@@ -76,6 +83,7 @@ class SecUserController {
     }
 
     @Transactional
+	@Secured(["ROLE_ADMIN"])
     def delete(SecUser secUserInstance) {
 
         if (secUserInstance == null) {
@@ -104,15 +112,19 @@ class SecUserController {
         }
     }
 	
+	@Secured(["IS_AUTHENTICATED_REMEMBERED"])
 	def home() {
 		def authorities = springSecurityService.getCurrentUser().authorities*.authority
 		if("ROLE_ADMIN" in authorities) {
+			log.debug("Redirecting to ADMIN frontpage")
 			render view: '/index'
 		}
 		else if("ROLE_ORGANIZER" in authorities) {
+			log.debug("Redirecting to ORGANIZER frontpage")
 			redirect controller: 'event', action: 'userEvents'
 		}
 		else if("ROLE_BUSINESSUSER" in authorities) {
+			log.debug("Redirecting to BUSINESS USER frontpage")
 			redirect controller: 'business', action: 'userBusinesses'
 		}
 	}
