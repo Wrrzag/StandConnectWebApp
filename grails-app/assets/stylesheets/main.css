@@ -622,7 +622,7 @@ a.skip {
 	padding-top: 5px;
 }
 
-.main-nav a {
+.main-nav a, .main-nav a:visited {
 	color: #DCF5FF;
 	width: 100%;
 	text-align: center;
