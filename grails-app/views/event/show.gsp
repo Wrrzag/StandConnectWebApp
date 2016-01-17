@@ -9,17 +9,28 @@
 	</head>
 	<body>
 		<a href="#show-event" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>
-					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				</sec:ifAnyGranted>
-			</ul>
-		</div>
-		<div id="show-event" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+<%--		<div class="nav" role="navigation">--%>
+<%--			<ul>--%>
+<%--				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--%>
+<%--				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>--%>
+<%--				<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>--%>
+<%--					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>--%>
+<%--				</sec:ifAnyGranted>--%>
+<%--			</ul>--%>
+<%--		</div>--%>
+		<div id="show-event" class="content scaffold-show col-lg-12" role="main">
+			<div class="row title-row">
+				<div class="col-lg-10"><h1 class="big-title"><g:message code="default.show.label" args="[entityName]" /></h1></div>
+				<div class="col-lg-2">
+					<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_ORGANIZER'>
+						<g:link class="create" action="create">
+							<div class="btn btn-primary top-btn" role="navigation">
+								<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<g:message code="default.new.label" args="[entityName]" />
+					        </div>
+					    </g:link>
+			        </sec:ifAnyGranted>
+				</div>
+			</div>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
