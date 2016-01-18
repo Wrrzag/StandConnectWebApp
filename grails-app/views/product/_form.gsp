@@ -55,7 +55,7 @@
     <label for="tags">
         <g:message code="product.tags.label" default="_Tags" />
      </label>
-    <sel:multiSelectTag id="tags" name="tags" product="${productInstance}"/>
+     <div id="tagList"><sel:multiSelectTag id="tags" name="tags" product="${productInstance}"/></div>
 </div>
 
 <%--<div class="fieldcontain ${hasErrors(bean: productInstance, field: 'business', 'error')} required">--%>

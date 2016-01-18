@@ -25,6 +25,7 @@ class SelectorTagLib {
 		
 		if(selected) remaining.removeAll(selected) 
 		
+		out << "<div><span>Selected</span><span style='float:right;'>Available</span></div>"
 		out << "<div class='selectBoxes'>"
 		
 		out << g.select(id: attrs?.id, name: attrs?.name, from: selected, multiple: 'multiple', optionKey: 'id')

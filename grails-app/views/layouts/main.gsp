@@ -3,7 +3,7 @@
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="${locale.currentLocale() ?: 'en'}" class="no-js"><!--<![endif]-->
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -17,7 +17,7 @@
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div class="topbar">
+		<div class="topbar">${lang }
 			<locale:list />
 		
 	        <sec:ifLoggedIn>
@@ -35,15 +35,15 @@
         </div>
         
         <div id="grailsLogo" role="banner">
-            <g:link controller="secUser" action="home"><asset:image src="grails_logo.png" alt="Grails"/></g:link>
-            <div class="main-title">Stand Connect</div>
+            <g:link controller="secUser" action="home"><asset:image src="logo.png" alt="StandConnect"/></g:link>
+            <div class="main-title"><g:message code="title.message" default="_Management Interface"/></div>
         </div>
        
         <sec:ifAnyGranted roles="ROLE_BUSINESSUSER">
         	<div class="nav main-nav buser-nav" role="navigation">
 				<ul>
 					<li style="width: 21.6%;"><g:link class="list ${controller == 'business' ? 'main-nav-selected' : ''}" controller="business" action="userBusinesses"><g:message code="default.my.businesses.label" default="_My Businesses"/></g:link></li>
-					<li style="width: 21.6%;"><g:link class="list ${controller == 'event' && view == 'businessEvents' ? 'main-nav-selected' : ''}" controller="event" action="businessEvents"><g:message code="default.attending.events.label" default="_Attending Events" /></g:link></li>
+					<li style="width: 21.6%;"><g:link class="list longtext ${controller == 'event' && view == 'businessEvents' ? 'main-nav-selected' : ''}" controller="event" action="businessEvents"><g:message code="default.attending.events.label" default="_Attending Events" /></g:link></li>
 					<li style="width: 14.6%;"><g:link class="list ${controller == 'event' && view != 'businessEvents' ? 'main-nav-selected' : ''}" controller="event" action="index"><g:message code="default.event.plural.label" default="_Events" /></g:link></li>
 					<li style="width: 14.6%;"><g:link class="list ${controller == 'product' ? 'main-nav-selected' : ''}" controller="product" action="index"><g:message code="default.product.plural.label" default="_Products" /></g:link></li>
 					<li style="width: 13.6%;"><g:link class="list ${controller == 'stand' ? 'main-nav-selected' : ''}" controller="stand" action="index"><g:message code="default.stand.plural.label" default="_Stands" /></g:link></li>

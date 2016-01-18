@@ -26,32 +26,32 @@ class RelationshipService {
 	}
 	
 	def getBusinesses(Product product) {
-		return BusinessTagProduct.findAllByProduct(product)*.business
+		return BusinessTagProduct.findAllByProduct(product)*.business?.unique(false)
 	}
 	
 	def getBusinesses(Beacon beacon) {
-		return StandBeaconBusiness.findAllByBeacon(beacon)*.business
+		return StandBeaconBusiness.findAllByBeacon(beacon)*.business?.unique(false)
 	}
 	
 	def getBusinesses(Stand stand) {
-		return StandBeaconBusiness.findAllByStand(stand)*.business
+		return StandBeaconBusiness.findAllByStand(stand)*.business?.unique(false)
 	}
 	
 	def getBusinesses(Event event) {
-		return EventBusiness.findAllByEvent(event)*.business
+		return EventBusiness.findAllByEvent(event)*.business?.unique(false)
 	}
 	
 	def getTags(Business business) {
-		return BusinessTagProduct.findAllByBusiness(business)*.tag
+		return BusinessTagProduct.findAllByBusiness(business)*.tag?.unique(false)
 	}
 	
 	def getTags(Product product) {
 //		return BusinessTagProduct.findAllByProduct(product)*.tag
-		return product.businessTagProduct*.tag
+		return product.businessTagProduct*.tag?.unique(false)
 	}
 	
 	def getTags(VisitorEvent visitorEvent) {
-		return VisitorEventTag.findAllByVisitorEvent(visitorEvent)*.tag
+		return VisitorEventTag.findAllByVisitorEvent(visitorEvent)*.tag?.unique(false)
 	}
 	
 	def getTags(Visitor visitor, Event event) {
@@ -70,15 +70,15 @@ class RelationshipService {
 			tags << getTags(it)
 		}
 		
-		return tags.flatten()
+		return tags.flatten()?.unique(false)
 	}
 	
 	def getVisitorEvents(Visitor visitor, Event event) {
-		return VisitorEvent.findAllByVisitorAndEvent(visitor, event)	
+		return VisitorEvent.findAllByVisitorAndEvent(visitor, event)?.unique(false)	
 	}
 	
 	def getVisitorEvents(Event event) {
-		return VisitorEvent.findAllByEvent(event)
+		return VisitorEvent.findAllByEvent(event)?.unique(false)
 	}
 	
 	def getVisitorEvents(Tag tag) {
@@ -86,7 +86,7 @@ class RelationshipService {
 	}
 	
 	def getProducts(Business business) {
-		return BusinessTagProduct.findAllByBusiness(business)*.product
+		return BusinessTagProduct.findAllByBusiness(business)*.product?.unique(false)
 	}
 	
 	def getProducts(Tag tag) {
@@ -99,7 +99,7 @@ class RelationshipService {
 			products << getProducts(it)
 		} 
 		
-		return products.flatten()
+		return products.flatten()?.unique(false)
 	}
 	
 	def getProducts(Business business, Event event) {
@@ -107,15 +107,15 @@ class RelationshipService {
 	}
 	
 	def getEvents(Business business) {
-		return EventBusiness.findAllByBusiness(business)*.event
+		return EventBusiness.findAllByBusiness(business)*.event?.unique(false)
 	}
 	
 	def getEvents(Visitor visitor) {
-		VisitorEvent.findAllByVisitor(visitor)*.event
+		VisitorEvent.findAllByVisitor(visitor)*.event?.unique(false)
 	}
 	
 	def getEvents(VisitorEvent visitorEvent) {
-		return visitorEvent.event
+		return visitorEvent.event?.unique(false)
 	}
 	
 	def getEvents(Tag tag) {
@@ -123,19 +123,19 @@ class RelationshipService {
 	}
 	
 	def getStands(Beacon beacon) {
-		StandBeaconBusiness.findAllByBeacon(beacon)*.stand
+		StandBeaconBusiness.findAllByBeacon(beacon)*.stand?.unique(false)
 	}
 	
 	def getStands(Business business) {
-		StandBeaconBusiness.findAllByBusiness(business)*.stand
+		StandBeaconBusiness.findAllByBusiness(business)*.stand?.unique(false)
 	}
 	
 	def getVisitors(Event event) {
-		VisitorEvent.findAllByEvent(event)*.visitor
+		VisitorEvent.findAllByEvent(event)*.visitor?.unique(false)
 	}
 	
 	def getVisitors(VisitorEvent visitorEvent) {
-		return visitorEvent.visitor
+		return visitorEvent.visitor?.unique(false)
 	}
 	
 	def getVisitors(Tag tag) {
@@ -143,7 +143,7 @@ class RelationshipService {
 	}
 	
 	def getBeacons(Stand stand) {
-		StandBeaconBusiness.findAllByStand(stand)*.beacon
+		StandBeaconBusiness.findAllByStand(stand)*.beacon?.unique(false)
 	}
 	
 	def getBeacons(Business business) {
@@ -161,7 +161,7 @@ class RelationshipService {
 			}
 		}
 		
-		return beacons
+		return beacons?.unique(false)
 	}
 	
 	def getBeacons(Tag tag) {

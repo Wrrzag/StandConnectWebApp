@@ -24,4 +24,8 @@ class LocaleTagLib {
 			}
 		}
 	}
+	
+	def currentLocale = {
+		out << RequestContextUtils.getLocale(request)
+	}
 }

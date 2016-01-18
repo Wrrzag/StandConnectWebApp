@@ -33,6 +33,8 @@
 						<g:sortableColumn property="name" title="${message(code: 'stand.name.label', default: 'Name')}" />
 					
 						<g:sortableColumn property="number" title="${message(code: 'stand.number.label', default: 'Number')}" />
+						
+						<th><g:message code="stand.business.label" default="_Business" /></th>
 					
 						<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'><th></th></sec:ifAnyGranted>
 					</tr>
@@ -52,6 +54,8 @@
 						<td>${fieldValue(bean: standInstance, field: "name")}</td>
 					
 						<td>${fieldValue(bean: standInstance, field: "number")}</td>
+						
+						<td><g:each in="${standInstance.standBeaconBusiness}" var="s"><g:link controller="business" action="show" id="${s?.business?.id}">${s?.business}</g:link></g:each></td>
 					
 						<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
 							<td class="options">

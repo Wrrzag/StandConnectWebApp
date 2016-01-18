@@ -61,16 +61,16 @@
 				</li>
 				</g:if>
 				
-<%--				<g:if test="${standInstance?.standBeaconBusiness}">--%>
-<%--				<li class="fieldcontain">--%>
-<%--					<span id="standBeaconBusiness-label" class="property-label"><g:message code="stand.standBeaconBusiness.label" default="Stand Beacon Business" /></span>--%>
-<%--					--%>
-<%--						<g:each in="${standInstance.standBeaconBusiness}" var="s">--%>
-<%--						<span class="property-value" aria-labelledby="standBeaconBusiness-label"><g:link controller="standBeaconBusiness" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>--%>
-<%--						</g:each>--%>
-<%--					--%>
-<%--				</li>--%>
-<%--				</g:if>--%>
+				<g:if test="${standInstance?.standBeaconBusiness}">
+				<li class="fieldcontain">
+					<span id="standBeaconBusiness-label" class="property-label"><g:message code="stand.business.label" default="_Business" /></span>
+					
+						<g:each in="${standInstance.standBeaconBusiness}" var="s">
+						<span class="property-value" aria-labelledby="standBeaconBusiness-label"><g:link controller="business" action="show" id="${s?.business?.id}">${s?.business}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
 			
 			</ol>
 			<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>

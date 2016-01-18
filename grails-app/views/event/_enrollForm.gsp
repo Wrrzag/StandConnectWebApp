@@ -37,7 +37,7 @@
 <%--    <sel:multiSelectProduct id="products" name="products" business="${businessInstance}" event="${eventInstance}"/>--%>
 <%--</div>--%>
 
-<div class="fieldcontain ">
+<div class="fieldcontain " id="imageInput">
 	<label for="image"> 
 	   <g:message code="stand.image.label" default="Image" />
 	</label> 

@@ -92,7 +92,12 @@ img {
 
 #grailsLogo a {
 	display: inline-block;
-	margin: /*1.25*/4.25em;
+/* 	margin: 1.25 4.25em; */
+	margin: 1em 4.25em;
+}
+
+#grailsLogo img {
+	height: 136px;
 }
 
 .content {
@@ -669,8 +674,8 @@ a.skip {
 .main-title {
 	display: inline-block;
 	float: right;
-	font-size: 50pt;
-	margin: 3.5% 5% 0px 0px;
+	font-size: 35pt;
+	margin: 4.5% 5% 0px 0px;
 	font-weight: bold;
 }
 
@@ -733,4 +738,45 @@ td.options .btn-group {
 
 .deleteli {
 	cursor: pointer;
+}
+
+#imageInput input {
+	display: inline;
+}
+
+#tagList {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.selectBoxes {
+	height: 10em;
+}
+
+
+
+.selectBoxes > select {
+	height: 100%;
+	display: inline;
+	min-width: 12.5em;
+}
+.selectBoxes > div {
+	display: inline;
+	position: relative;
+	  top: 40%;
+}
+
+textarea {
+	width: 33em;
+}
+
+.main-nav a.longtext:lang(es) {
+	font-size: 15px;
+	padding-top: 0.2em;
+	height: 26px;
+}
+.main-nav a.longtext:lang(ca_ES) {
+	font-size: 15px;
+	padding-top: 0.2em;
+	height: 26px;
 }
