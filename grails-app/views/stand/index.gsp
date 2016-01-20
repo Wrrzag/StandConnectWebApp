@@ -72,7 +72,7 @@
 								    <li>
 								         <g:link class="edit" action="edit" resource="${standInstance}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;<g:message code="default.button.edit.label" default="_Edit" /></g:link>
 								    </li>
-								    <li onclick="deleteForm${standtInstance.id}.click();" class="deleteli">
+								    <li onclick="deleteForm${standInstance.id}.click();" class="deleteli">
 								    	<a><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;<g:message code="default.button.delete.label" default="_Delete" /></a>
 								    	<g:form url="[resource:standInstance, action:'delete']" method="DELETE">
 											<g:actionSubmit hidden id="deleteForm${standInstance.id}" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />

@@ -158,7 +158,7 @@ class BusinessController {
 	private hasPermission(businessInstance) {
 		def currentUser = springSecurityService.getCurrentUser()
 		
-		if("ROLE_ADMIN" in currentUser?.authorities*.authority || businessInstance.businessUser == currentUser) {
+		if("ROLE_ADMIN" in currentUser?.authorities*.authority || businessInstance?.businessUser == currentUser) {
 			return true
 		}
 		else {

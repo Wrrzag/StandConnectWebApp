@@ -89,7 +89,7 @@
 								    </li>
 								    <li onclick="deleteForm${businessInstance.id}.click();" class="deleteli">
 								    	<a><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;&nbsp;<g:message code="default.button.delete.label" default="_Delete" /></a>
-								    	<g:form url="[resource:businessnstance, action:'delete']" method="DELETE">
+								    	<g:form url="[resource:businessInstance, action:'delete']" method="DELETE">
 											<g:actionSubmit hidden id="deleteForm${businessInstance.id}" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 										</g:form>
 	                                </li>
