@@ -39,6 +39,15 @@
             <div class="main-title"><g:message code="title.message" default="_Management Interface"/></div>
         </div>
        
+       <sec:ifAnyGranted roles="ROLE_ADMIN">
+        	<div class="nav main-nav admin-nav" role="navigation">
+				<ul>
+					<li style="width: 27.6%;"><g:link class="list ${controller == 'businessUser' ? 'main-nav-selected' : ''}" controller="businessUser" action="index"><g:message code="default.businessUsers.label" default="_Business Users"/></g:link></li>
+					<li style="width: 21.6%;"><g:link class="list ${controller == 'organizer' ? 'main-nav-selected' : ''}" controller="organizer" action="index"><g:message code="default.organizers.label" default="_Organizers"/></g:link></li>
+					<li style="width: 13.6%;"><g:link class="list ${controller == 'tag' ? 'main-nav-selected' : ''}" controller="tag" action="index"><g:message code="default.tags.label" default="_Tags" /></g:link></li>
+				</ul>
+			</div>
+        </sec:ifAnyGranted>
         <sec:ifAnyGranted roles="ROLE_BUSINESSUSER">
         	<div class="nav main-nav buser-nav" role="navigation">
 				<ul>

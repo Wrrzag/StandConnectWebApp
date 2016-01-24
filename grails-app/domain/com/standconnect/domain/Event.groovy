@@ -17,6 +17,7 @@ class Event {
 	String location
 	int standNumber
 	byte[] image
+	Date dateCreated
 	
 	static hasMany = [stands: Stand, eventBusiness: EventBusiness, visitorEvent: VisitorEvent]
 	static belongsTo = [organizer: Organizer]

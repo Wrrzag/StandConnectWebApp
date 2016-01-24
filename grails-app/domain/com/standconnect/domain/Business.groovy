@@ -16,6 +16,7 @@ class Business {
 	String contact
 	String phone
 	String address
+	Date dateCreated
 	
 	static hasMany = [beacon: Beacon, standBeaconBusiness: StandBeaconBusiness, businessTagProduct: BusinessTagProduct, eventBusiness: EventBusiness, products: Product]
 	static belongsTo = [businessUser: BusinessUser]

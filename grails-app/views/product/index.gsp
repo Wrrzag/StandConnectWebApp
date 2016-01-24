@@ -21,7 +21,7 @@
 			<div class="row title-row">
 				<div class="col-lg-10"><h1 class="big-title"><g:message code="default.list.label" args="[entityName]" /></h1></div>
 				<div class="col-lg-2">
-					<sec:ifAnyGranted roles='ROLE_ADMIN,ROLE_BUSINESSUSER'>
+					<sec:ifAnyGranted roles='ROLE_BUSINESSUSER'>
 						<g:link class="create" action="create">
 							<div class="btn btn-primary top-btn" role="navigation">
 								<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<g:message code="default.new.label" args="[entityName]" />

@@ -11,6 +11,7 @@ class Product {
 	String description
 	String price
 	byte[] image
+	Date dateCreated
 	
 	static hasMany = [businessTagProduct: BusinessTagProduct]
 	static belongsTo = [business: Business]
